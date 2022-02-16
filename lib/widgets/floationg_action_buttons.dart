@@ -6,9 +6,10 @@ mixin CancelReportButton {
   Widget getCancelReportButton(BuildContext context) => Align(
       alignment: Alignment.bottomLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 30.0),
+        padding: const EdgeInsets.only(left: 30),
         child: FloatingActionButton(
           heroTag: "back",
+          tooltip: "Cancel report",
           child: Icon(
             Icons.close_rounded,
             color: Theme.of(context).canvasColor,
@@ -40,9 +41,10 @@ mixin LastPageButton {
   Widget getLastPageButton(BuildContext context) => Align(
       alignment: Alignment.bottomLeft,
       child: Padding(
-        padding: const EdgeInsets.only(left: 30.0),
+        padding: const EdgeInsets.only(left: 30),
         child: FloatingActionButton(
           heroTag: "back",
+          tooltip: "Last page",
           child: Icon(
             Icons.arrow_back_rounded,
             color: Theme.of(context).canvasColor,
@@ -66,6 +68,7 @@ mixin NextPageButton {
         alignment: Alignment.bottomRight,
         child: FloatingActionButton(
           heroTag: "forward",
+          tooltip: "Next page",
           child: Icon(
             Icons.arrow_forward_rounded,
             color: Theme.of(context).canvasColor,
@@ -88,6 +91,7 @@ mixin SubmitButton {
       alignment: Alignment.bottomRight,
       child: FloatingActionButton(
           heroTag: "forward",
+          tooltip: "Submit report",
           child: Icon(
             Icons.check_rounded,
             color: Theme.of(context).canvasColor,

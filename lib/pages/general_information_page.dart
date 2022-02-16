@@ -72,7 +72,7 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -106,7 +106,7 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -140,7 +140,7 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -183,6 +183,7 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
               alignment: Alignment.bottomRight,
               child: FloatingActionButton(
                 heroTag: "forward",
+                tooltip: "Next page",
                 child: Icon(
                   Icons.arrow_forward_rounded,
                   color: Theme.of(context).canvasColor,
@@ -295,11 +296,11 @@ class TeamButton extends StatelessWidget {
     return DecoratedBox(
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
-        border: Border.all(width: 1.0, color: _teamColor),
+        border: Border.all(width: 1, color: _teamColor),
         color: (_selected) ? _teamColor : Colors.transparent,
       ),
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8),
         child: Text(
           _label,
           style: AppFont(

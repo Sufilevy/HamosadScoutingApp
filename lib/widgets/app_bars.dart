@@ -4,29 +4,33 @@ import 'package:hamosad_scouting_app/pages/pages.dart';
 class PageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
-  final String _title;
-  final bool _automaticallyImplyLeading;
-  final List<Widget>? _buttons;
+  final String title;
+  final bool automaticallyImplyLeading;
+  final List<Widget>? actionButtons;
+  final Widget? leading;
+  final bool showLogo;
 
   PageAppBar(
       {Key? key,
-      required String title,
-      bool automaticallyImplyLeading = false,
-      List<Widget>? buttons})
-      : _title = title,
-        preferredSize = const Size.fromHeight(56.0),
-        _automaticallyImplyLeading = automaticallyImplyLeading,
-        _buttons = [],
+      required this.title,
+      this.automaticallyImplyLeading = false,
+      buttons = const <Widget>[],
+      this.leading,
+      this.showLogo = true})
+      : preferredSize = const Size.fromHeight(56),
+        actionButtons = [],
         super(key: key) {
     if (buttons != null) {
-      for (final button in buttons) {
-        _buttons?.add(Align(
-          alignment: Alignment.bottomRight,
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: button,
-          ),
-        ));
+      if (buttons != null && buttons!.isNotEmpty) {
+        for (final button in buttons!) {
+          actionButtons?.add(Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: button,
+            ),
+          ));
+        }
       }
     }
   }
@@ -35,29 +39,33 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       title: Stack(children: [
+        showLogo
+            ? Align(
+                alignment: Alignment.centerLeft,
+                child: ImageIcon(
+                    const AssetImage(
+                        "assets/png/hamosad_logo_dark_transperent.png"),
+                    size: 70,
+                    color: accentColor),
+              )
+            : Container(),
         Align(
-          alignment: Alignment.bottomLeft,
-          child: ImageIcon(
-              const AssetImage("assets/png/hamosad_logo_dark_transperent.png"),
-              size: 70.0,
-              color: accentColor),
-        ),
-        Align(
-          alignment: Alignment.bottomCenter,
+          alignment: Alignment.center,
           child: Padding(
             padding: const EdgeInsets.fromLTRB(40, 20, 20, 20),
             child: Text(
-              _title,
+              title,
               style: AppFont(
-                size: 23.0,
+                size: 23,
                 color: accentColor,
               ).getFont(),
             ),
           ),
         ),
-        ...?_buttons,
+        ...?actionButtons,
       ]),
-      automaticallyImplyLeading: _automaticallyImplyLeading,
+      automaticallyImplyLeading: automaticallyImplyLeading,
+      leading: leading,
     );
   }
 }

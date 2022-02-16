@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hamosad_scouting_app/widgets/widgets.dart';
+import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:hamosad_scouting_app/pages/pages.dart';
 
 class AboutPage extends StatelessWidget {
@@ -7,67 +8,116 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
-    double widgetSize = width < height ? width / 5 : height / 5;
-
     return Scaffold(
-      appBar: PageAppBar(title: "About", automaticallyImplyLeading: true),
+      appBar: AppBar(
+        title: Stack(
+          children: [
+            Center(
+              child: Text(
+                "About",
+                style: AppFont(
+                  size: 23,
+                  color: accentColor,
+                ).getFont(),
+              ),
+            ),
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: GestureDetector(
+                  child: Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: accentColor,
+                  ),
+                  onTap: () {
+                    Navigator.pop(context);
+                    SystemSound.play(SystemSoundType.click);
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+        automaticallyImplyLeading: false,
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              "This app...",
-              textAlign: TextAlign.center,
-              style: AppFont(size: widgetSize / 4, color: Colors.grey.shade700)
-                  .getFont(),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Was made with",
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    "This app was made with",
                     textAlign: TextAlign.center,
-                    style: AppFont(
-                            size: widgetSize / 4, color: Colors.grey.shade700)
+                    style: AppFont(size: 22.5, color: Colors.grey.shade700)
                         .getFont(),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FlutterLogo(
-                    size: widgetSize,
+                  const FlutterLogo(
+                    size: 120,
                     style: FlutterLogoStyle.horizontal,
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    "Was made by",
-                    textAlign: TextAlign.center,
-                    style: AppFont(
-                            size: widgetSize / 4, color: Colors.grey.shade700)
-                        .getFont(),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 15),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      "This app was made by",
+                      textAlign: TextAlign.center,
+                      style: AppFont(size: 22.5, color: Colors.grey.shade700)
+                          .getFont(),
+                    ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: FlutterLogo(
-                    size: widgetSize,
-                    style: FlutterLogoStyle.horizontal,
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text("Sufi Levy",
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.shadowsIntoLight(
+                            textStyle: const TextStyle(
+                                color: Color(0xFF165700),
+                                fontSize: 30,
+                                fontWeight: FontWeight.bold))),
                   ),
-                ),
-              ],
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Text(
+                      "This app was made for",
+                      textAlign: TextAlign.center,
+                      style: AppFont(size: 22.5, color: Colors.grey.shade700)
+                          .getFont(),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Image(
+                      width: 190.5,
+                      height: 96.6,
+                      image: AssetImage(
+                          "assets/png/hamosad_logo_color_transperent.png"),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

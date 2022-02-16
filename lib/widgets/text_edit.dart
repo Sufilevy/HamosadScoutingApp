@@ -35,14 +35,14 @@ class _TextEditState extends State<TextEdit> {
                 shape: BoxShape.rectangle,
                 border: Border.all(color: accentColor)),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: EditableText(
                   textAlign: TextAlign.center,
                   minLines: 3,
                   maxLines: 3,
                   controller: _textController,
                   focusNode: FocusNode(),
-                  style: AppFont(color: accentColor, size: 15).getFont(),
+                  style: AppFont(color: accentColor, size: 17.5).getFont(),
                   cursorColor: accentColor,
                   backgroundCursorColor: accentColor),
             ),

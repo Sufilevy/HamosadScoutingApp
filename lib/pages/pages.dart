@@ -14,15 +14,19 @@ export 'summary_page.dart';
 Color accentColor = Colors.green.shade700;
 
 class AppFont {
-  AppFont({Color? color, double? size})
-      : _color = color,
-        _size = size;
+  final Color? color;
+  final double? size;
+  final FontWeight? fontWeight;
+  final FontStyle? font;
 
-  final Color? _color;
-  final double? _size;
+  AppFont({this.color, this.size, this.fontWeight, this.font});
 
   dynamic getFont() {
     return GoogleFonts.abel(
-        textStyle: TextStyle(color: _color, fontSize: _size));
+        textStyle: TextStyle(
+            color: color,
+            fontSize: size,
+            fontStyle: font,
+            fontWeight: fontWeight));
   }
 }

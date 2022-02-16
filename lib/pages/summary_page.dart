@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hamosad_scouting_app/pages/pages.dart';
 import 'package:hamosad_scouting_app/widgets/widgets.dart';
 
 class SummaryPage extends StatefulWidget {
