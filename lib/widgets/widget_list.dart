@@ -5,22 +5,26 @@ class WidgetList extends StatelessWidget {
 
   WidgetList({Key? key, required List<Widget> children})
       : _widgets = List<Widget>.generate(
-            children.length * 2,
-            (i) => ((i + 1) % 2 == 0)
-                ? children[i ~/ 2]
-                : const SizedBox(
-                    height: 20,
-                  )),
+          children.length * 2,
+          (i) => ((i + 1) % 2 == 0)
+              ? children[i ~/ 2]
+              : const SizedBox(
+                  height: 20,
+                ),
+        ),
         super(key: key) {
-    _widgets.add(const SizedBox(
-      height: 200,
-    ));
+    _widgets.add(
+      const SizedBox(
+        height: 200,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, children: _widgets));
+      child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, children: _widgets),
+    );
   }
 }

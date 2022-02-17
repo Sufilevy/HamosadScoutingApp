@@ -27,18 +27,22 @@ class _DropdownMenuState extends State<DropdownMenu> {
       children: [
         Padding(
           padding: const EdgeInsets.only(right: 20),
-          child: Text(widget.title,
-              style: AppFont(color: accentColor, size: 22.5).getFont()),
+          child: Text(
+            widget.title,
+            style: AppFont(size: 22.5).getFont(),
+          ),
         ),
         DropdownButton<String>(
           value: currentValue,
-          style: AppFont(color: accentColor, size: 22.5).getFont(),
+          style: AppFont(size: 22.5).getFont(),
           alignment: Alignment.center,
           onChanged: (String? newValue) {
-            setState(() {
-              currentValue = newValue;
-              widget.onChanged(newValue!);
-            });
+            setState(
+              () {
+                currentValue = newValue;
+                widget.onChanged(newValue!);
+              },
+            );
           },
           items: widget.items.map<DropdownMenuItem<String>>((String value) {
             return DropdownMenuItem<String>(

@@ -25,21 +25,30 @@ class PopupDialog extends StatelessWidget {
         _buttons = [],
         super(key: key) {
     for (var button in buttons) {
-      _buttons.add(Expanded(flex: 1, child: Container()));
       _buttons.add(Expanded(
-        flex: 4,
-        child: TextButton(
-          onPressed: button._onPressed,
-          style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all(accentColor)),
-          child: Text(
-            button._text,
-            style: AppFont(color: Theme.of(context).canvasColor, size: 20)
-                .getFont(),
+        flex: 1,
+        child: Container(),
+      ));
+      _buttons.add(
+        Expanded(
+          flex: 4,
+          child: TextButton(
+            onPressed: button._onPressed,
+            style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(accentColor),
+            ),
+            child: Text(
+              button._text,
+              style: AppFont(color: Theme.of(context).canvasColor, size: 20)
+                  .getFont(),
+            ),
           ),
         ),
+      );
+      _buttons.add(Expanded(
+        flex: 1,
+        child: Container(),
       ));
-      _buttons.add(Expanded(flex: 1, child: Container()));
     }
   }
 
@@ -49,12 +58,12 @@ class PopupDialog extends StatelessWidget {
       title: Text(
         _title,
         textAlign: TextAlign.center,
-        style: AppFont(color: accentColor, size: 27.5).getFont(),
+        style: AppFont(size: 27.5).getFont(),
       ),
       content: Text(
         _body,
         textAlign: TextAlign.center,
-        style: AppFont(color: accentColor, size: 22.5).getFont(),
+        style: AppFont(size: 22.5).getFont(),
       ),
       actions: [
         Row(

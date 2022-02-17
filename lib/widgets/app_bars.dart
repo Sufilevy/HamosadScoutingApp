@@ -23,13 +23,15 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
     if (buttons != null) {
       if (buttons != null && buttons!.isNotEmpty) {
         for (final button in buttons!) {
-          actionButtons?.add(Align(
-            alignment: Alignment.bottomRight,
-            child: Padding(
-              padding: const EdgeInsets.all(20),
-              child: button,
+          actionButtons?.add(
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: button,
+              ),
             ),
-          ));
+          );
         }
       }
     }
@@ -38,32 +40,33 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Stack(children: [
-        showLogo
-            ? Align(
-                alignment: Alignment.centerLeft,
-                child: ImageIcon(
-                    const AssetImage(
-                        "assets/png/hamosad_logo_dark_transperent.png"),
-                    size: 70,
-                    color: accentColor),
-              )
-            : Container(),
-        Align(
-          alignment: Alignment.center,
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(40, 20, 20, 20),
-            child: Text(
-              title,
-              style: AppFont(
-                size: 23,
-                color: accentColor,
-              ).getFont(),
+      title: Stack(
+        children: [
+          showLogo
+              ? Align(
+                  alignment: Alignment.centerLeft,
+                  child: ImageIcon(
+                      const AssetImage(
+                          "assets/png/hamosad_logo_dark_transperent.png"),
+                      size: 70,
+                      color: accentColor),
+                )
+              : Container(),
+          Align(
+            alignment: Alignment.center,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(40, 20, 20, 20),
+              child: Text(
+                title,
+                style: AppFont(
+                  size: 23,
+                ).getFont(),
+              ),
             ),
           ),
-        ),
-        ...?actionButtons,
-      ]),
+          ...?actionButtons,
+        ],
+      ),
       automaticallyImplyLeading: automaticallyImplyLeading,
       leading: leading,
     );

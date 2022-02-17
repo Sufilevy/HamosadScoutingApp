@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:hamosad_scouting_app/misc/string_container.dart';
+import 'package:hamosad_scouting_app/misc/data_container.dart';
 import 'package:hamosad_scouting_app/pages/pages.dart';
 import 'package:hamosad_scouting_app/misc/database.dart';
 import 'package:hamosad_scouting_app/widgets/widgets.dart';
 
-int _selectedTeam = -1;
+DataContainer<int> selectedTeam = DataContainer(-1);
 String? gameNumber;
 List<String> teams = [
   "0000",
@@ -17,8 +17,11 @@ List<String> teams = [
 
 class GeneralInformationPage extends StatefulWidget {
   GeneralInformationPage({Key? key}) : super(key: key) {
-    _selectedTeam = -1;
+    selectedTeam.value = -1;
   }
+
+  final DataContainer<String> currentTeamData = DataContainer("");
+  final DataContainer<String> gameNumberData = DataContainer("");
 
   @override
   State<GeneralInformationPage> createState() => _GeneralInformationPageState();
@@ -26,29 +29,33 @@ class GeneralInformationPage extends StatefulWidget {
 
 class _GeneralInformationPageState extends State<GeneralInformationPage>
     with CancelReportButton, NextPageButton {
-  final List<String> _games =
-      List<int>.generate(11, (i) => i + 1).map((v) => v.toString()).toList() +
-          ["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"];
+  final List<String> games = List<int>.generate(11, (i) => i + 1)
+          .map(
+            (v) => v.toString(),
+          )
+          .toList() +
+      ["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"];
 
-  final AutonomusPage _nextPage = const AutonomusPage();
   late final DropdownMenu chooseGames;
-  final StringContainer currentTeamNumber = StringContainer();
   late final TextEdit teamNumber;
 
   @override
   void initState() {
     super.initState();
     chooseGames = DropdownMenu(
-        title: "Game Number:",
-        items: _games,
-        onChanged: (newValue) => setState(() {
-              gameNumber = newValue;
-              teams = getTeamsInGame(gameNumber: gameNumber);
-            }));
+      title: "Game Number:",
+      items: games,
+      onChanged: (newValue) => setState(
+        () {
+          gameNumber = newValue;
+          teams = getTeamsInGame(gameNumber: gameNumber);
+        },
+      ),
+    );
     gameNumber = null;
     teamNumber = TextEdit(
       title: "Team Number:",
-      container: currentTeamNumber,
+      container: widget.currentTeamData,
     );
   }
 
@@ -56,220 +63,263 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
   Widget build(BuildContext context) {
     if (["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"]
         .contains(gameNumber)) {
-      _selectedTeam = -1;
+      selectedTeam.value = -1;
     }
 
     return Scaffold(
       appBar: PageAppBar(
         title: "General Information",
       ),
-      body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-        chooseGames,
-        (["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"]
-                .contains(gameNumber))
-            ? teamNumber
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          chooseGames,
+          (["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"]
+                  .contains(gameNumber))
+              ? teamNumber
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
                             onPressed: () {
-                              setState(() {
-                                if (gameNumber != null && _selectedTeam != 0) {
-                                  _selectedTeam = 0;
-                                }
-                              });
+                              setState(
+                                () {
+                                  if (gameNumber != null &&
+                                      selectedTeam.value != 0) {
+                                    selectedTeam.value = 0;
+                                    widget.currentTeamData.value = teams[0];
+                                  }
+                                },
+                              );
                             },
                             child: TeamButton(
                               label: teams[0],
-                              selected: _selectedTeam == 0,
+                              selected: selectedTeam.value == 0,
                               teamColor: Colors.blue,
-                            )),
-                        TextButton(
+                            ),
+                          ),
+                          TextButton(
                             onPressed: () {
-                              setState(() {
-                                if (gameNumber != null && _selectedTeam != 3) {
-                                  _selectedTeam = 3;
-                                }
-                              });
+                              setState(
+                                () {
+                                  if (gameNumber != null &&
+                                      selectedTeam.value != 3) {
+                                    selectedTeam.value = 3;
+                                    widget.currentTeamData.value = teams[3];
+                                  }
+                                },
+                              );
                             },
                             child: TeamButton(
                               label: teams[3],
-                              selected: _selectedTeam == 3,
+                              selected: selectedTeam.value == 3,
                               teamColor: Colors.red,
-                            )),
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
                             onPressed: () {
-                              setState(() {
-                                if (gameNumber != null && _selectedTeam != 1) {
-                                  _selectedTeam = 1;
-                                }
-                              });
+                              setState(
+                                () {
+                                  if (gameNumber != null &&
+                                      selectedTeam.value != 1) {
+                                    selectedTeam.value = 1;
+                                    widget.currentTeamData.value = teams[1];
+                                  }
+                                },
+                              );
                             },
                             child: TeamButton(
                               label: teams[1],
-                              selected: _selectedTeam == 1,
+                              selected: selectedTeam.value == 1,
                               teamColor: Colors.blue,
-                            )),
-                        TextButton(
+                            ),
+                          ),
+                          TextButton(
                             onPressed: () {
-                              setState(() {
-                                if (gameNumber != null && _selectedTeam != 4) {
-                                  _selectedTeam = 4;
-                                }
-                              });
+                              setState(
+                                () {
+                                  if (gameNumber != null &&
+                                      selectedTeam.value != 4) {
+                                    selectedTeam.value = 4;
+                                    widget.currentTeamData.value = teams[4];
+                                  }
+                                },
+                              );
                             },
                             child: TeamButton(
                               label: teams[4],
-                              selected: _selectedTeam == 4,
+                              selected: selectedTeam.value == 4,
                               teamColor: Colors.red,
-                            )),
-                      ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
+                    Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
                             onPressed: () {
-                              setState(() {
-                                if (gameNumber != null && _selectedTeam != 2) {
-                                  _selectedTeam = 2;
-                                }
-                              });
+                              setState(
+                                () {
+                                  if (gameNumber != null &&
+                                      selectedTeam.value != 2) {
+                                    selectedTeam.value = 2;
+                                    widget.currentTeamData.value = teams[2];
+                                  }
+                                },
+                              );
                             },
                             child: TeamButton(
                               label: teams[2],
-                              selected: _selectedTeam == 2,
+                              selected: selectedTeam.value == 2,
                               teamColor: Colors.blue,
-                            )),
-                        TextButton(
+                            ),
+                          ),
+                          TextButton(
                             onPressed: () {
-                              setState(() {
-                                if (gameNumber != null && _selectedTeam != 5) {
-                                  _selectedTeam = 5;
-                                }
-                              });
+                              setState(
+                                () {
+                                  if (gameNumber != null &&
+                                      selectedTeam.value != 5) {
+                                    selectedTeam.value = 5;
+                                    widget.currentTeamData.value = teams[5];
+                                  }
+                                },
+                              );
                             },
                             child: TeamButton(
                               label: teams[5],
-                              selected: _selectedTeam == 5,
+                              selected: selectedTeam.value == 5,
                               teamColor: Colors.red,
-                            )),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-      ]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+        ],
+      ),
       floatingActionButton: Stack(
         children: [
           getCancelReportButton(context),
           Align(
-              alignment: Alignment.bottomRight,
-              child: FloatingActionButton(
-                heroTag: "forward",
-                tooltip: "Next page",
-                child: Icon(
-                  Icons.arrow_forward_rounded,
-                  color: Theme.of(context).canvasColor,
-                ),
-                backgroundColor: accentColor,
-                onPressed: () {
-                  setState(() {});
+            alignment: Alignment.bottomRight,
+            child: FloatingActionButton(
+              heroTag: "forward",
+              tooltip: "Next page",
+              child: Icon(
+                Icons.arrow_forward_rounded,
+                color: Theme.of(context).canvasColor,
+              ),
+              backgroundColor: accentColor,
+              onPressed: () {
+                setState(() {});
 
-                  if (gameNumber == null) {
-                    showDialog(
+                if (gameNumber == null) {
+                  showDialog(
+                    context: context,
+                    builder: (context) => PopupDialog(
+                      context,
+                      title: "Warning!",
+                      body:
+                          "You need to choose a game number before continuing.",
+                      buttons: [
+                        PopupDialogButton(
+                          text: "OK",
+                          onPressed: () => Navigator.of(context).pop(),
+                        )
+                      ],
+                    ),
+                  );
+                } else {
+                  if (["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"]
+                      .contains(gameNumber)) {
+                    if (widget.currentTeamData.value == "") {
+                      showDialog(
                         context: context,
                         builder: (context) => PopupDialog(
-                              context,
-                              title: "Warning!",
-                              body:
-                                  "You need to choose a game number before continuing.",
-                              buttons: [
-                                PopupDialogButton(
-                                    text: "OK",
-                                    onPressed: () =>
-                                        Navigator.of(context).pop())
-                              ],
-                            ));
-                  } else {
-                    if (["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"]
-                        .contains(gameNumber)) {
-                      if (currentTeamNumber.value != null) {
-                        if (int.tryParse(currentTeamNumber.value!) == null) {
-                          showDialog(
-                              context: context,
-                              builder: (context) => PopupDialog(
-                                    context,
-                                    title: "Warning!",
-                                    body: "You can only enter numbers.",
-                                    buttons: [
-                                      PopupDialogButton(
-                                          text: "OK",
-                                          onPressed: () =>
-                                              Navigator.of(context).pop())
-                                    ],
-                                  ));
-                        } else {
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => _nextPage));
-                        }
-                      } else {
+                          context,
+                          title: "Warning!",
+                          body:
+                              "You need to enter a team number before continuing.",
+                          buttons: [
+                            PopupDialogButton(
+                              text: "OK",
+                              onPressed: () => Navigator.of(context).pop(),
+                            )
+                          ],
+                        ),
+                      );
+                    } else {
+                      if (int.tryParse(widget.currentTeamData.value) == null) {
                         showDialog(
-                            context: context,
-                            builder: (context) => PopupDialog(
-                                  context,
-                                  title: "Warning!",
-                                  body:
-                                      "You need to enter a team number before continuing.",
-                                  buttons: [
-                                    PopupDialogButton(
-                                        text: "OK",
-                                        onPressed: () =>
-                                            Navigator.of(context).pop())
-                                  ],
-                                ));
-                      }
-                    } else if (_selectedTeam == -1) {
-                      showDialog(
                           context: context,
                           builder: (context) => PopupDialog(
-                                context,
-                                title: "Warning!",
-                                body:
-                                    "You need to choose a team before continuing.",
-                                buttons: [
-                                  PopupDialogButton(
-                                      text: "OK",
-                                      onPressed: () =>
-                                          Navigator.of(context).pop())
-                                ],
-                              ));
-                    } else {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => _nextPage));
+                            context,
+                            title: "Warning!",
+                            body: "You can only enter numbers.",
+                            buttons: [
+                              PopupDialogButton(
+                                text: "OK",
+                                onPressed: () => Navigator.of(context).pop(),
+                              )
+                            ],
+                          ),
+                        );
+                      } else {
+                        FocusScope.of(context).requestFocus(
+                          FocusNode(),
+                        );
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => pages["autonomus"]!),
+                        );
+                      }
                     }
+                  } else if (selectedTeam.value == -1) {
+                    showDialog(
+                      context: context,
+                      builder: (context) => PopupDialog(
+                        context,
+                        title: "Warning!",
+                        body: "You need to choose a team before continuing.",
+                        buttons: [
+                          PopupDialogButton(
+                            text: "OK",
+                            onPressed: () => Navigator.of(context).pop(),
+                          )
+                        ],
+                      ),
+                    );
+                  } else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => pages["autonomus"]!),
+                    );
                   }
-                },
-              ))
+                }
+              },
+            ),
+          )
         ],
       ),
     );

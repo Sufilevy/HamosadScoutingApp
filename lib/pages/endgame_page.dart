@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hamosad_scouting_app/pages/pages.dart';
 import 'package:hamosad_scouting_app/widgets/widgets.dart';
+import 'package:hamosad_scouting_app/misc/data_container.dart';
 
 class EndgamePage extends StatefulWidget {
-  const EndgamePage({Key? key}) : super(key: key);
+  EndgamePage({Key? key}) : super(key: key);
+
+  final DataContainer<double> barClimbedData = DataContainer(0);
+  final DataContainer<String> notesData = DataContainer("");
 
   @override
   State<EndgamePage> createState() => _EndgamePageState();
@@ -11,9 +15,21 @@ class EndgamePage extends StatefulWidget {
 
 class _EndgamePageState extends State<EndgamePage>
     with LastPageButton, NextPageButton {
-  final OptionsSlider _bars =
-      const OptionsSlider(title: "Robot has climbed to bar:", max: 4);
-  final TextEdit _notes = const TextEdit(title: "Additional Notes:");
+  late final OptionsSlider barClimbed;
+  late final TextEdit notes;
+
+  @override
+  void initState() {
+    barClimbed = OptionsSlider(
+        title: "Robot has climbed to bar:",
+        container: widget.barClimbedData,
+        max: 4);
+    notes = TextEdit(
+      title: "Additional Notes:",
+      container: widget.notesData,
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +40,11 @@ class _EndgamePageState extends State<EndgamePage>
       floatingActionButton: Stack(
         children: [
           getLastPageButton(context),
-          getNextPageButton(context, nextPage: const SummaryPage())
+          getNextPageButton(context, nextPage: pages["summary"]!)
         ],
       ),
       body: WidgetList(
-        children: [_bars, _notes],
+        children: [barClimbed, notes],
       ),
     );
   }

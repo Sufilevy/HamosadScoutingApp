@@ -12,6 +12,7 @@ export 'endgame_page.dart';
 export 'summary_page.dart';
 
 Color accentColor = Colors.green.shade700;
+Map<String, StatefulWidget> pages = {};
 
 class AppFont {
   final Color? color;
@@ -23,10 +24,11 @@ class AppFont {
 
   dynamic getFont() {
     return GoogleFonts.abel(
-        textStyle: TextStyle(
-            color: color,
-            fontSize: size,
-            fontStyle: font,
-            fontWeight: fontWeight));
+      textStyle: TextStyle(
+          color: color ?? accentColor,
+          fontSize: size,
+          fontStyle: font,
+          fontWeight: fontWeight),
+    );
   }
 }

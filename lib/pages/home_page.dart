@@ -19,8 +19,10 @@ class HomePage extends StatelessWidget {
               size: 35,
             ),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const AboutPage()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AboutPage()),
+              );
               SystemSound.play(SystemSoundType.click);
             },
           )
@@ -39,15 +41,24 @@ class HomePage extends StatelessWidget {
               height: 20,
             ),
             IconButton(
-              icon: const Icon(Icons.add_box_outlined),
-              tooltip: "Create a new report",
-              iconSize: 100,
-              color: Colors.grey.shade700,
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => GeneralInformationPage())),
-            ),
+                icon: const Icon(Icons.add_box_outlined),
+                tooltip: "Create a new report",
+                iconSize: 100,
+                color: Colors.grey.shade700,
+                onPressed: () {
+                  pages = {
+                    "information": GeneralInformationPage(),
+                    "autonomus": AutonomusPage(),
+                    "teleop": TeleopPage(),
+                    "endgame": EndgamePage(),
+                    "summary": SummaryPage(),
+                  };
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => pages["information"]!,
+                      ));
+                }),
           ],
         ),
       ),

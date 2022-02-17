@@ -17,7 +17,6 @@ class AboutPage extends StatelessWidget {
                 "About",
                 style: AppFont(
                   size: 23,
-                  color: accentColor,
                 ).getFont(),
               ),
             ),
@@ -84,10 +83,11 @@ class AboutPage extends StatelessWidget {
                     child: Text("Sufi Levy",
                         textAlign: TextAlign.center,
                         style: GoogleFonts.shadowsIntoLight(
-                            textStyle: const TextStyle(
-                                color: Color(0xFF165700),
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold))),
+                          textStyle: const TextStyle(
+                              color: Color(0xFF165700),
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold),
+                        )),
                   ),
                 ],
               ),
