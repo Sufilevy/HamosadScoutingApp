@@ -4,10 +4,16 @@ import 'package:hamosad_scouting_app/pages/pages.dart';
 
 class TextEdit extends StatefulWidget {
   final String title;
+  final double? size;
+  final int? lines;
   final DataContainer<String> textData;
 
   const TextEdit(
-      {Key? key, required this.title, required DataContainer<String> container})
+      {Key? key,
+      required this.title,
+      required DataContainer<String> container,
+      this.size,
+      this.lines})
       : textData = container,
         super(key: key);
 
@@ -46,11 +52,11 @@ class _TextEditState extends State<TextEdit> {
               padding: const EdgeInsets.all(8),
               child: EditableText(
                   textAlign: TextAlign.center,
-                  minLines: 3,
-                  maxLines: 3,
+                  minLines: widget.lines ?? 3,
+                  maxLines: widget.lines ?? 3,
                   controller: textController,
                   focusNode: FocusNode(),
-                  style: AppFont(size: 17.5).getFont(),
+                  style: AppFont(size: widget.size ?? 17.5).getFont(),
                   cursorColor: accentColor,
                   backgroundCursorColor: accentColor),
             ),

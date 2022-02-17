@@ -6,7 +6,7 @@ import 'package:hamosad_scouting_app/widgets/widgets.dart';
 class AutonomusPage extends StatefulWidget {
   AutonomusPage({Key? key}) : super(key: key);
 
-  final DataContainer<bool> robotMovedDAta = DataContainer(false);
+  final DataContainer<bool> robotMovedData = DataContainer(false);
   final DataContainer<int> ballsPickedFloorData = DataContainer(0);
   final DataContainer<int> ballsPickedFeederData = DataContainer(0);
   final DataContainer<int> ballsShotData = DataContainer(0);
@@ -31,8 +31,8 @@ class _AutonomusPageState extends State<AutonomusPage>
   @override
   void initState() {
     robotMoved = ToggleButton(
-      title: "Has the robot moved?",
-      container: widget.robotMovedDAta,
+      title: "Has the robot exited the taramac?",
+      container: widget.robotMovedData,
     );
     ballsPickedFloorCounter = ScoreCounter(
       title: "Balls picked from floor:",

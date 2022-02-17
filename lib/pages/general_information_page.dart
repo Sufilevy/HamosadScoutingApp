@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hamosad_scouting_app/misc/data_container.dart';
 import 'package:hamosad_scouting_app/pages/pages.dart';
 import 'package:hamosad_scouting_app/misc/database.dart';
+import 'package:hamosad_scouting_app/widgets/alliance_buttons.dart';
 import 'package:hamosad_scouting_app/widgets/widgets.dart';
 
 DataContainer<int> selectedTeam = DataContainer(-1);
@@ -21,6 +22,7 @@ class GeneralInformationPage extends StatefulWidget {
   }
 
   final DataContainer<String> currentTeamData = DataContainer("");
+  final DataContainer<String> allianceData = DataContainer("blue");
   final DataContainer<String> gameNumberData = DataContainer("");
 
   @override
@@ -38,6 +40,7 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
 
   late final DropdownMenu chooseGames;
   late final TextEdit teamNumber;
+  late final AllianceButtons allianceButtons;
 
   @override
   void initState() {
@@ -48,6 +51,7 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
       onChanged: (newValue) => setState(
         () {
           gameNumber = newValue;
+          widget.gameNumberData.value = newValue;
           teams = getTeamsInGame(gameNumber: gameNumber);
         },
       ),
@@ -56,7 +60,10 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
     teamNumber = TextEdit(
       title: "Team Number:",
       container: widget.currentTeamData,
+      size: 30,
+      lines: 1,
     );
+    allianceButtons = AllianceButtons(container: widget.allianceData);
   }
 
   @override
@@ -70,151 +77,168 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
       appBar: PageAppBar(
         title: "General Information",
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          chooseGames,
-          (["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"]
-                  .contains(gameNumber))
-              ? teamNumber
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              setState(
-                                () {
-                                  if (gameNumber != null &&
-                                      selectedTeam.value != 0) {
-                                    selectedTeam.value = 0;
-                                    widget.currentTeamData.value = teams[0];
-                                  }
-                                },
-                              );
-                            },
-                            child: TeamButton(
-                              label: teams[0],
-                              selected: selectedTeam.value == 0,
-                              teamColor: Colors.blue,
-                            ),
+      body: Center(
+        child: WidgetList(
+          children: [
+            chooseGames,
+            if (["Eighth-Final", "Quarter-Final", "Semi-Final", "Final"]
+                .contains(gameNumber))
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: teamNumber,
+                  ),
+                  allianceButtons
+                ],
+              )
+            else
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                if (gameNumber != null &&
+                                    selectedTeam.value != 0) {
+                                  selectedTeam.value = 0;
+                                  widget.currentTeamData.value = teams[0];
+                                  widget.allianceData.value = "blue";
+                                }
+                              },
+                            );
+                          },
+                          child: TeamButton(
+                            label: teams[0],
+                            selected: selectedTeam.value == 0,
+                            teamColor: Colors.blue,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              setState(
-                                () {
-                                  if (gameNumber != null &&
-                                      selectedTeam.value != 3) {
-                                    selectedTeam.value = 3;
-                                    widget.currentTeamData.value = teams[3];
-                                  }
-                                },
-                              );
-                            },
-                            child: TeamButton(
-                              label: teams[3],
-                              selected: selectedTeam.value == 3,
-                              teamColor: Colors.red,
-                            ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                if (gameNumber != null &&
+                                    selectedTeam.value != 3) {
+                                  selectedTeam.value = 3;
+                                  widget.currentTeamData.value = teams[3];
+                                  widget.allianceData.value = "red";
+                                }
+                              },
+                            );
+                          },
+                          child: TeamButton(
+                            label: teams[3],
+                            selected: selectedTeam.value == 3,
+                            teamColor: Colors.red,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              setState(
-                                () {
-                                  if (gameNumber != null &&
-                                      selectedTeam.value != 1) {
-                                    selectedTeam.value = 1;
-                                    widget.currentTeamData.value = teams[1];
-                                  }
-                                },
-                              );
-                            },
-                            child: TeamButton(
-                              label: teams[1],
-                              selected: selectedTeam.value == 1,
-                              teamColor: Colors.blue,
-                            ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                if (gameNumber != null &&
+                                    selectedTeam.value != 1) {
+                                  selectedTeam.value = 1;
+                                  widget.currentTeamData.value = teams[1];
+                                  widget.allianceData.value = "blue";
+                                }
+                              },
+                            );
+                          },
+                          child: TeamButton(
+                            label: teams[1],
+                            selected: selectedTeam.value == 1,
+                            teamColor: Colors.blue,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              setState(
-                                () {
-                                  if (gameNumber != null &&
-                                      selectedTeam.value != 4) {
-                                    selectedTeam.value = 4;
-                                    widget.currentTeamData.value = teams[4];
-                                  }
-                                },
-                              );
-                            },
-                            child: TeamButton(
-                              label: teams[4],
-                              selected: selectedTeam.value == 4,
-                              teamColor: Colors.red,
-                            ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                if (gameNumber != null &&
+                                    selectedTeam.value != 4) {
+                                  selectedTeam.value = 4;
+                                  widget.currentTeamData.value = teams[4];
+                                  widget.allianceData.value = "red";
+                                }
+                              },
+                            );
+                          },
+                          child: TeamButton(
+                            label: teams[4],
+                            selected: selectedTeam.value == 4,
+                            teamColor: Colors.red,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          TextButton(
-                            onPressed: () {
-                              setState(
-                                () {
-                                  if (gameNumber != null &&
-                                      selectedTeam.value != 2) {
-                                    selectedTeam.value = 2;
-                                    widget.currentTeamData.value = teams[2];
-                                  }
-                                },
-                              );
-                            },
-                            child: TeamButton(
-                              label: teams[2],
-                              selected: selectedTeam.value == 2,
-                              teamColor: Colors.blue,
-                            ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                if (gameNumber != null &&
+                                    selectedTeam.value != 2) {
+                                  selectedTeam.value = 2;
+                                  widget.currentTeamData.value = teams[2];
+                                  widget.allianceData.value = "blue";
+                                }
+                              },
+                            );
+                          },
+                          child: TeamButton(
+                            label: teams[2],
+                            selected: selectedTeam.value == 2,
+                            teamColor: Colors.blue,
                           ),
-                          TextButton(
-                            onPressed: () {
-                              setState(
-                                () {
-                                  if (gameNumber != null &&
-                                      selectedTeam.value != 5) {
-                                    selectedTeam.value = 5;
-                                    widget.currentTeamData.value = teams[5];
-                                  }
-                                },
-                              );
-                            },
-                            child: TeamButton(
-                              label: teams[5],
-                              selected: selectedTeam.value == 5,
-                              teamColor: Colors.red,
-                            ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            setState(
+                              () {
+                                if (gameNumber != null &&
+                                    selectedTeam.value != 5) {
+                                  selectedTeam.value = 5;
+                                  widget.currentTeamData.value = teams[5];
+                                  widget.allianceData.value = "red";
+                                }
+                              },
+                            );
+                          },
+                          child: TeamButton(
+                            label: teams[5],
+                            selected: selectedTeam.value == 5,
+                            teamColor: Colors.red,
                           ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-        ],
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+          ],
+        ),
       ),
       floatingActionButton: Stack(
         children: [

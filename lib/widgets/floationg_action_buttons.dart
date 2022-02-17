@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:hamosad_scouting_app/misc/database.dart';
 import 'package:hamosad_scouting_app/pages/pages.dart';
 import 'widgets.dart';
 
@@ -121,8 +124,15 @@ mixin SubmitButton {
                     ),
                     PopupDialogButton(
                       text: "SUBMIT",
-                      onPressed: () => Navigator.of(context)
-                          .popUntil((route) => route.isFirst),
+                      onPressed: () {
+                        var reportData = generateReportData();
+
+                        // ignore: avoid_print
+                        print(jsonEncode(reportData));
+
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst);
+                      },
                     ),
                   ],
                 ),

@@ -5,9 +5,13 @@ import 'package:hamosad_scouting_app/pages/pages.dart';
 class ToggleButton extends StatefulWidget {
   final String title;
   final DataContainer<bool> toggledData;
+  final void Function(bool)? onChanged;
 
   const ToggleButton(
-      {Key? key, required this.title, required DataContainer<bool> container})
+      {Key? key,
+      required this.title,
+      required DataContainer<bool> container,
+      this.onChanged})
       : toggledData = container,
         super(key: key);
 
@@ -30,15 +34,24 @@ class _ToggleButtonState extends State<ToggleButton> {
             fillColor: MaterialStateProperty.all<Color>(accentColor),
             value: widget.toggledData.value,
             onChanged: (value) => setState(
-              () =>
-                  widget.toggledData.value = value ?? !widget.toggledData.value,
+              () {
+                widget.toggledData.value = value ?? !widget.toggledData.value;
+                if (widget.onChanged != null) {
+                  widget.onChanged!(widget.toggledData.value);
+                }
+              },
             ),
           ),
         ),
         TextButton(
           child: Text(widget.title, style: AppFont(size: 22.5).getFont()),
           onPressed: () => setState(
-            () => widget.toggledData.value = !widget.toggledData.value,
+            () {
+              widget.toggledData.value = !widget.toggledData.value;
+              if (widget.onChanged != null) {
+                widget.onChanged!(widget.toggledData.value);
+              }
+            },
           ),
         )
       ],

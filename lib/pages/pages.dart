@@ -12,7 +12,7 @@ export 'endgame_page.dart';
 export 'summary_page.dart';
 
 Color accentColor = Colors.green.shade700;
-Map<String, StatefulWidget> pages = {};
+var pages = {};
 
 class AppFont {
   final Color? color;

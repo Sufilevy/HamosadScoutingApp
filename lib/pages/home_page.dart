@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.grey.shade700,
                 onPressed: () {
                   pages = {
-                    "information": GeneralInformationPage(),
+                    "info": GeneralInformationPage(),
                     "autonomus": AutonomusPage(),
                     "teleop": TeleopPage(),
                     "endgame": EndgamePage(),
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => pages["information"]!,
+                        builder: (context) => pages["info"]!,
                       ));
                 }),
           ],

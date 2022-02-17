@@ -7,5 +7,5 @@ export 'toggle_button.dart';
 export 'score_counter.dart';
 export 'text_edit.dart';
 export 'widget_list.dart';
-export 'slider.dart';
+export 'options_slider.dart';
 export 'dropdown_menu.dart';

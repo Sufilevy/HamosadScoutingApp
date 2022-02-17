@@ -6,6 +6,7 @@ class OptionsSlider extends StatefulWidget {
   final double min, max;
   final double intervals;
   final String title;
+  final String? leftTitle, rightTitle;
   final DataContainer<double> valueData;
 
   const OptionsSlider({
@@ -15,6 +16,8 @@ class OptionsSlider extends StatefulWidget {
     this.min = 0,
     this.max = 1,
     this.intervals = 1,
+    this.leftTitle,
+    this.rightTitle,
   })  : valueData = container,
         super(key: key);
 
@@ -52,6 +55,27 @@ class _OptionsSliderState extends State<OptionsSlider> {
                 setState(() => widget.valueData.value = newValue),
           ),
         ),
+        widget.rightTitle != null || widget.leftTitle != null
+            ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                if (widget.leftTitle != null)
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(widget.leftTitle!,
+                          style: AppFont(size: 20).getFont()))
+                else
+                  Container(),
+                const SizedBox(
+                  width: 125,
+                ),
+                if (widget.rightTitle != null)
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(widget.rightTitle!,
+                          style: AppFont(size: 20).getFont()))
+                else
+                  Container(),
+              ])
+            : Container(),
       ],
     );
   }

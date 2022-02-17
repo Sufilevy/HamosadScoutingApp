@@ -9,7 +9,7 @@ class WidgetList extends StatelessWidget {
           (i) => ((i + 1) % 2 == 0)
               ? children[i ~/ 2]
               : const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
         ),
         super(key: key) {
