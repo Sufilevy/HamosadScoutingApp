@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:hamosad_scouting_app/misc/database.dart';
 import 'package:hamosad_scouting_app/pages/pages.dart';
@@ -127,8 +125,8 @@ mixin SubmitButton {
                       onPressed: () {
                         var reportData = generateReportData();
 
-                        // ignore: avoid_print
-                        print(jsonEncode(reportData));
+                        lastReport = reportData;
+                        sendReportToDatabase();
 
                         Navigator.of(context)
                             .popUntil((route) => route.isFirst);

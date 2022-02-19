@@ -16,7 +16,7 @@ class SummaryPage extends StatefulWidget {
 class _SummaryPageState extends State<SummaryPage>
     with LastPageButton, SubmitButton {
   late final OptionsSlider robotFocus = OptionsSlider(
-    title: "Robot's Main Focus:",
+    title: "Robot's main focus:",
     container: widget.robotFocusData,
     min: 1,
     max: 5,
@@ -70,6 +70,20 @@ class _SummaryPageState extends State<SummaryPage>
         Padding(
           padding: const EdgeInsets.all(8),
           child: robotFocus,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Text(
+            "Autonomus Score:   ${pages["autonomus"].lowerScoreData.value * 2 + pages["autonomus"].upperScoreData.value * 4}",
+            style: AppFont(size: 25).getFont(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Text(
+            "Autonomus Score:   ${pages["teleop"].lowerScoreData.value + pages["teleop"].upperScoreData.value * 2}",
+            style: AppFont(size: 25).getFont(),
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(20),

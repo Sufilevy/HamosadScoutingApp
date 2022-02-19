@@ -20,41 +20,52 @@ class ToggleButton extends StatefulWidget {
 }
 
 class _ToggleButtonState extends State<ToggleButton> {
+  
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Transform.scale(
-          scale: 1.5,
-          alignment: Alignment.center,
-          child: Checkbox(
-            shape: const CircleBorder(),
-            checkColor: Theme.of(context).canvasColor,
-            fillColor: MaterialStateProperty.all<Color>(accentColor),
-            value: widget.toggledData.value,
-            onChanged: (value) => setState(
-              () {
-                widget.toggledData.value = value ?? !widget.toggledData.value;
-                if (widget.onChanged != null) {
-                  widget.onChanged!(widget.toggledData.value);
-                }
-              },
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Transform.scale(
+            scale: 1.5,
+            alignment: Alignment.center,
+            child: Checkbox(
+              shape: const CircleBorder(),
+              checkColor: Theme.of(context).canvasColor,
+              fillColor: MaterialStateProperty.all<Color>(accentColor),
+              value: widget.toggledData.value,
+              onChanged: (value) => setState(
+                () {
+                  widget.toggledData.value = value ?? !widget.toggledData.value;
+                  if (widget.onChanged != null) {
+                    widget.onChanged!(widget.toggledData.value);
+                  }
+                },
+              ),
             ),
           ),
-        ),
-        TextButton(
-          child: Text(widget.title, style: AppFont(size: 22.5).getFont()),
-          onPressed: () => setState(
-            () {
-              widget.toggledData.value = !widget.toggledData.value;
-              if (widget.onChanged != null) {
-                widget.onChanged!(widget.toggledData.value);
-              }
-            },
-          ),
-        )
-      ],
+          Flexible(
+            child: TextButton(
+              child: Text(widget.title,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+                  softWrap: true,
+                  style: AppFont(size: 22.5).getFont()),
+              onPressed: () => setState(
+                () {
+                  widget.toggledData.value = !widget.toggledData.value;
+                  if (widget.onChanged != null) {
+                    widget.onChanged!(widget.toggledData.value);
+                  }
+                },
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

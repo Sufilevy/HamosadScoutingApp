@@ -6,6 +6,7 @@ class TextEdit extends StatefulWidget {
   final String title;
   final double? size;
   final int? lines;
+  final bool titleInLine;
   final DataContainer<String> textData;
 
   const TextEdit(
@@ -13,7 +14,8 @@ class TextEdit extends StatefulWidget {
       required this.title,
       required DataContainer<String> container,
       this.size,
-      this.lines})
+      this.lines,
+      this.titleInLine = false})
       : textData = container,
         super(key: key);
 
@@ -23,10 +25,22 @@ class TextEdit extends StatefulWidget {
 
 class _TextEditState extends State<TextEdit> {
   late final TextEditingController textController;
+  final FocusNode focusNode = FocusNode();
+  String? hintText;
 
   @override
   void initState() {
     textController = TextEditingController(text: widget.textData.value);
+
+    hintText = widget.title;
+    focusNode.addListener(() => setState(() {
+          if (focusNode.hasFocus) {
+            hintText = '';
+          } else {
+            hintText = widget.title;
+          }
+        }));
+
     super.initState();
   }
 
@@ -37,28 +51,39 @@ class _TextEditState extends State<TextEdit> {
 
     return Column(
       children: [
-        Text(
-          widget.title,
-          style: AppFont(size: 22.5).getFont(),
-        ),
+        if (!widget.titleInLine)
+          Text(
+            widget.title,
+            style: AppFont(size: 22.5).getFont(),
+          ),
         Padding(
           padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
           child: DecoratedBox(
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
               border: Border.all(color: accentColor),
+              borderRadius: const BorderRadius.all(Radius.circular(5)),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8),
-              child: EditableText(
-                  textAlign: TextAlign.center,
-                  minLines: widget.lines ?? 3,
-                  maxLines: widget.lines ?? 3,
-                  controller: textController,
-                  focusNode: FocusNode(),
-                  style: AppFont(size: widget.size ?? 17.5).getFont(),
-                  cursorColor: accentColor,
-                  backgroundCursorColor: accentColor),
+              child: TextField(
+                decoration: widget.titleInLine
+                    ? InputDecoration.collapsed(
+                        hintText: hintText,
+                        hintStyle: AppFont().getFont(),
+                      )
+                    : const InputDecoration(),
+                textInputAction: TextInputAction.done,
+                textAlign: TextAlign.center,
+                minLines: widget.lines ?? 3,
+                maxLines: widget.lines ?? 3,
+                controller: textController,
+                focusNode: focusNode,
+                style: AppFont(size: widget.size ?? 17.5).getFont(),
+                cursorColor: accentColor,
+                onChanged: (newValue) => widget.textData.value = newValue,
+                onSubmitted: (newValue) => widget.textData.value = newValue,
+              ),
             ),
           ),
         ),

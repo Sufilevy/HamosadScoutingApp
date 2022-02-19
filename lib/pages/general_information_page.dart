@@ -52,7 +52,22 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
         () {
           gameNumber = newValue;
           widget.gameNumberData.value = newValue;
-          teams = getTeamsInGame(gameNumber: gameNumber);
+          if (gameNumber != null && int.tryParse(gameNumber!) != null) {
+            List<String> temp = [];
+            for (var value in gameTeams[int.parse(gameNumber!) - 1]) {
+              temp.add(value.toString());
+            }
+            teams = temp;
+          } else {
+            teams = [
+              "0000",
+              "0000",
+              "0000",
+              "0000",
+              "0000",
+              "0000",
+            ];
+          }
         },
       ),
     );

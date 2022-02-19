@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "870501520419",
+    "firebase_url": "https://hamosad-scouting-app-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "hamosad-scouting-app",
+    "storage_bucket": "hamosad-scouting-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:870501520419:android:a3c279a942571d7f114d96",
+        "android_client_info": {
+          "package_name": "com.hamosad1657.hamosadScoutingApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "870501520419-igrt16smcsah59090i4c3h87hbham9mg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hamosad1657.hamosadScoutingApp",
+            "certificate_hash": "81c9ab914cc1a40cd1b25c51dd9891ae403ff945"
+          }
+        },
+        {
+          "client_id": "870501520419-6mq1s0e41oj9fptu7s3ajol3h413lrbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBW6XB4IYoS5LTcjhJ-DEXgG7wDiUnKzqE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "870501520419-6mq1s0e41oj9fptu7s3ajol3h413lrbd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "870501520419-39toc3hpbjrqgc4ad8ik5uviq90kurs3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hamosad1657.hamosad-scouting-app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

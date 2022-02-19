@@ -16,7 +16,7 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
       this.automaticallyImplyLeading = false,
       buttons = const <Widget>[],
       this.leading,
-      this.showLogo = true})
+      this.showLogo = false})
       : preferredSize = const Size.fromHeight(56),
         actionButtons = [],
         super(key: key) {

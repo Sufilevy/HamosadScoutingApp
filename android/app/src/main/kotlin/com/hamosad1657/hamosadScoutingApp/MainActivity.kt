@@ -1,4 +1,4 @@
-package com.hamosad1657.hamosad_scouting_app
+package com.hamosad1657.hamosadScoutingApp
 
 import io.flutter.embedding.android.FlutterActivity
 
