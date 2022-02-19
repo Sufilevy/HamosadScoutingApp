@@ -13,6 +13,7 @@ export 'summary_page.dart';
 
 Color accentColor = Colors.green.shade700;
 var pages = {};
+bool creatingNewReport = true;
 
 class AppFont {
   final Color? color;

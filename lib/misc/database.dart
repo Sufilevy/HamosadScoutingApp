@@ -24,11 +24,23 @@ String generateReportId() {
   return List.generate(6, (index) => _chars[r.nextInt(_chars.length)]).join();
 }
 
-dynamic generateReportData() {
+dynamic getDatetime() {
+  DateTime now = DateTime.now();
+
   return {
-    generateReportId(): {
-      "reporterName": pages["home"].reporterNameData.value,
-      "reporterTeam": pages["home"].reporterTeamData.value,
+    "day": now.day.toString(),
+    "month": now.month.toString(),
+    "year": now.year.toString(),
+    "time": now.hour.toString() + ":" + now.minute.toString(),
+  };
+}
+
+dynamic generateReportData(
+    {String? id, String? reporterName, String? reporterTeam}) {
+  return {
+    id ?? generateReportId(): {
+      "reporterName": reporterName ?? pages["home"].reporterNameData.value,
+      "reporterTeam": reporterTeam ?? pages["home"].reporterTeamData.value,
       "team": int.tryParse(pages["info"].currentTeamData.value) ??
           pages["info"].currentTeamData.value,
       "game": int.tryParse(pages["info"].gameNumberData.value) ??
@@ -64,7 +76,8 @@ dynamic generateReportData() {
       "endgame": {
         "bar": pages["endgame"].barClimbedData.value.toInt(),
         "notes": pages["endgame"].notesData.value
-      }
+      },
+      "datetime": getDatetime(),
     }
   };
 }

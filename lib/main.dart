@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:hamosad_scouting_app/misc/database.dart';
 import 'package:hamosad_scouting_app/pages/pages.dart';
@@ -8,12 +9,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 
 void main() async {
-  if (Platform.isWindows) {
+  if (!kIsWeb && Platform.isWindows) {
     runApp(const WindowsApp());
   } else {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
-      name: "Scouting 1657",
       options: DefaultFirebaseOptions.currentPlatform,
     );
     getTeams();

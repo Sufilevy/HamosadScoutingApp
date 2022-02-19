@@ -5,6 +5,7 @@ import 'package:hamosad_scouting_app/pages/pages.dart';
 class TextEdit extends StatefulWidget {
   final String title;
   final double? size;
+  final Color? color;
   final int? lines;
   final bool titleInLine;
   final DataContainer<String> textData;
@@ -15,7 +16,8 @@ class TextEdit extends StatefulWidget {
       required DataContainer<String> container,
       this.size,
       this.lines,
-      this.titleInLine = false})
+      this.titleInLine = false,
+      this.color})
       : textData = container,
         super(key: key);
 
@@ -54,14 +56,15 @@ class _TextEditState extends State<TextEdit> {
         if (!widget.titleInLine)
           Text(
             widget.title,
-            style: AppFont(size: 22.5).getFont(),
+            style: AppFont(size: 22.5, color: widget.color ?? accentColor)
+                .getFont(),
           ),
         Padding(
           padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
           child: DecoratedBox(
             decoration: BoxDecoration(
               shape: BoxShape.rectangle,
-              border: Border.all(color: accentColor),
+              border: Border.all(color: widget.color ?? accentColor),
               borderRadius: const BorderRadius.all(Radius.circular(5)),
             ),
             child: Padding(
@@ -70,7 +73,8 @@ class _TextEditState extends State<TextEdit> {
                 decoration: widget.titleInLine
                     ? InputDecoration.collapsed(
                         hintText: hintText,
-                        hintStyle: AppFont().getFont(),
+                        hintStyle: AppFont(color: widget.color ?? accentColor)
+                            .getFont(),
                       )
                     : const InputDecoration(),
                 textInputAction: TextInputAction.done,
@@ -80,7 +84,7 @@ class _TextEditState extends State<TextEdit> {
                 controller: textController,
                 focusNode: focusNode,
                 style: AppFont(size: widget.size ?? 17.5).getFont(),
-                cursorColor: accentColor,
+                cursorColor: widget.color ?? accentColor,
                 onChanged: (newValue) => widget.textData.value = newValue,
                 onSubmitted: (newValue) => widget.textData.value = newValue,
               ),

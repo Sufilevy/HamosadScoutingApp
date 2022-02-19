@@ -19,6 +19,15 @@ List<String> teams = [
 class GeneralInformationPage extends StatefulWidget {
   GeneralInformationPage({Key? key}) : super(key: key) {
     selectedTeam.value = -1;
+    gameNumber = null;
+    teams = [
+      "0000",
+      "0000",
+      "0000",
+      "0000",
+      "0000",
+      "0000",
+    ];
   }
 
   final DataContainer<String> currentTeamData = DataContainer("");
@@ -48,6 +57,7 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
     chooseGames = DropdownMenu(
       title: "Game Number:",
       items: games,
+      value: gameNumber,
       onChanged: (newValue) => setState(
         () {
           gameNumber = newValue;
@@ -71,7 +81,6 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
         },
       ),
     );
-    gameNumber = null;
     teamNumber = TextEdit(
       title: "Team Number:",
       container: widget.currentTeamData,

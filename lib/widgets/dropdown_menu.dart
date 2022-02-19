@@ -4,14 +4,16 @@ import 'package:hamosad_scouting_app/pages/pages.dart';
 class DropdownMenu extends StatefulWidget {
   final String title;
   final List<String> items;
+  final String? value;
   final void Function(String) onChanged;
 
-  const DropdownMenu(
-      {Key? key,
-      required this.title,
-      required this.items,
-      required this.onChanged})
-      : super(key: key);
+  const DropdownMenu({
+    Key? key,
+    required this.title,
+    required this.items,
+    required this.onChanged,
+    this.value,
+  }) : super(key: key);
 
   @override
   _DropdownMenuState createState() => _DropdownMenuState();
@@ -19,6 +21,12 @@ class DropdownMenu extends StatefulWidget {
 
 class _DropdownMenuState extends State<DropdownMenu> {
   String? currentValue;
+
+  @override
+  void initState() {
+    currentValue = widget.value;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

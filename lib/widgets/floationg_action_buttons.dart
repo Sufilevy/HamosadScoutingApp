@@ -123,9 +123,15 @@ mixin SubmitButton {
                     PopupDialogButton(
                       text: "SUBMIT",
                       onPressed: () {
-                        var reportData = generateReportData();
-
-                        lastReport = reportData;
+                        if (creatingNewReport) {
+                          lastReport = generateReportData();
+                        } else {
+                          lastReport = generateReportData(
+                            id: lastReport.keys.first,
+                            reporterName: lastReport["reporterName"],
+                            reporterTeam: lastReport["reporterTeam"],
+                          );
+                        }
                         sendReportToDatabase();
 
                         Navigator.of(context)
