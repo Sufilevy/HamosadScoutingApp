@@ -42,6 +42,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double screenHeight = MediaQuery.of(context).size.height;
+    final double screenSize = (screenHeight * screenWidth) / 1000;
+
     return Scaffold(
       appBar: PageAppBar(
         title: "",
@@ -82,32 +87,31 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Expanded(
-              flex: 2,
+              flex: 8,
               child: Column(
                 children: [
-                  const SizedBox(height: 20),
+                  SizedBox(height: screenSize / 15),
                   reporterName,
-                  const SizedBox(height: 20),
+                  SizedBox(height: screenSize / 20),
                   reporterTeam,
                 ],
               ),
             ),
             Expanded(
-              flex: 4,
+              flex: 11,
               child: Column(
                 children: [
-                  const SizedBox(height: 20),
                   Text(
                     "Create a\nnew report",
                     textAlign: TextAlign.center,
-                    style: AppFont(size: 45, color: Colors.grey.shade700)
+                    style: AppFont(
+                            size: screenSize / 7.2, color: Colors.grey.shade700)
                         .getFont(),
                   ),
-                  const SizedBox(height: 20),
                   IconButton(
                     icon: const Icon(Icons.add_box_outlined),
                     tooltip: "Create a new report",
-                    iconSize: 100,
+                    iconSize: screenSize / 2.75,
                     color: Colors.grey.shade700,
                     onPressed: () {
                       widget.reporterNameData.value =
@@ -188,60 +192,62 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextButton(
-                    onPressed: () {
-                      if (lastReport == null) {
-                        showDialog(
-                          context: context,
-                          builder: (context) => PopupDialog(
-                            context,
-                            title: "Warning!",
-                            body:
-                                "There is no report to edit, please create a new one.",
-                            buttons: [
-                              PopupDialogButton(
-                                text: "OK",
-                                onPressed: () => Navigator.of(context).pop(),
-                              )
-                            ],
-                          ),
-                        );
-                      } else {
-                        FocusScope.of(context).requestFocus(
-                          FocusNode(),
-                        );
+            !keyboardVisible
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          if (lastReport == null) {
+                            showDialog(
+                              context: context,
+                              builder: (context) => PopupDialog(
+                                context,
+                                title: "Warning!",
+                                body:
+                                    "There is no report to edit, please create a new one.",
+                                buttons: [
+                                  PopupDialogButton(
+                                    text: "OK",
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
+                                  )
+                                ],
+                              ),
+                            );
+                          } else {
+                            FocusScope.of(context).requestFocus(
+                              FocusNode(),
+                            );
 
-                        creatingNewReport = false;
+                            creatingNewReport = false;
 
-                        reportId = lastReport.keys.first;
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => pages["info"]!,
-                          ),
-                        );
-                      }
-                    },
-                    child: Text(
-                      "Update last report",
-                      textAlign: TextAlign.center,
-                      style: AppFont(size: 22.5, color: Colors.grey.shade700)
-                          .getFont(),
-                    ),
-                  ),
-                  Icon(
-                    Icons.replay_rounded,
-                    color: Colors.grey.shade700,
-                    size: 20,
-                  ),
-                ],
-              ),
-            ),
+                            reportId = lastReport.keys.first;
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => pages["info"]!,
+                              ),
+                            );
+                          }
+                        },
+                        child: Text(
+                          "Update last report",
+                          textAlign: TextAlign.center,
+                          style: AppFont(
+                                  size: screenSize / 13,
+                                  color: Colors.grey.shade700)
+                              .getFont(),
+                        ),
+                      ),
+                      Icon(
+                        Icons.replay_rounded,
+                        color: Colors.grey.shade700,
+                        size: screenSize / 15,
+                      ),
+                    ],
+                  )
+                : Container(),
           ],
         ),
       ),
