@@ -23,39 +23,39 @@ class _SummaryPageState extends State<SummaryPage>
     leftTitle: "< Defending",
     rightTitle: "Scoring >",
   );
+  int endgameScore = 0, autonomusScore = 0, teleopScore = 0;
 
   @override
   void initState() {
-    int climbingPoints;
     switch (pages["endgame"].barClimbedData.value.toInt()) {
       case 0:
-        climbingPoints = 0;
+        endgameScore = 0;
         break;
       case 1:
-        climbingPoints = 4;
+        endgameScore = 4;
         break;
       case 2:
-        climbingPoints = 6;
+        endgameScore = 6;
         break;
       case 3:
-        climbingPoints = 10;
+        endgameScore = 10;
         break;
       case 4:
-        climbingPoints = 15;
+        endgameScore = 15;
         break;
       default:
-        climbingPoints = 0;
+        endgameScore = 0;
         break;
     }
+    autonomusScore = pages["autonomus"].lowerScoreData.value * 2 +
+            pages["autonomus"].upperScoreData.value * 4 +
+            (pages["autonomus"].robotMovedData.value
+        ? 2
+        : 0);
+    teleopScore = pages["teleop"].lowerScoreData.value +
+        pages["teleop"].upperScoreData.value * 2;
 
-    widget.totalScoreData.value =
-        ((pages["autonomus"].robotMovedData.value ? 2 : 0) +
-                (pages["autonomus"].lowerScoreData.value * 2) +
-                (pages["autonomus"].upperScoreData.value * 4) +
-                (pages["teleop"].lowerScoreData.value * 1) +
-                (pages["teleop"].upperScoreData.value * 2) +
-                climbingPoints)
-            .toInt();
+    widget.totalScoreData.value = autonomusScore + teleopScore + endgameScore;
 
     super.initState();
   }
@@ -74,14 +74,21 @@ class _SummaryPageState extends State<SummaryPage>
         Padding(
           padding: const EdgeInsets.all(10),
           child: Text(
-            "Autonomus Score:   ${pages["autonomus"].lowerScoreData.value * 2 + pages["autonomus"].upperScoreData.value * 4}",
+            "Autonomus Score:   $autonomusScore",
             style: AppFont(size: 25).getFont(),
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(10),
           child: Text(
-            "Autonomus Score:   ${pages["teleop"].lowerScoreData.value + pages["teleop"].upperScoreData.value * 2}",
+            "Teleop Score:   $teleopScore",
+            style: AppFont(size: 25).getFont(),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10),
+          child: Text(
+            "Endgame Score:   $endgameScore",
             style: AppFont(size: 25).getFont(),
           ),
         ),
