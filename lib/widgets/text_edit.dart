@@ -70,6 +70,7 @@ class _TextEditState extends State<TextEdit> {
             child: Padding(
               padding: const EdgeInsets.all(8),
               child: TextField(
+                textDirection: TextDirection.rtl,
                 decoration: widget.titleInLine
                     ? InputDecoration.collapsed(
                         hintText: hintText,

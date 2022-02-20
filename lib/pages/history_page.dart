@@ -41,15 +41,26 @@ class HistoryPage extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: Center(
-        child: WidgetList(
-          children: List.generate(
-            reports.length,
-            (index) => Text(
-              "${index + 1}: ${reports[index]}",
-              style: AppFont(color: Colors.grey.shade700, size: 20).getFont(),
-            ),
-          ),
-        ),
+        child: reports.isNotEmpty
+            ? WidgetList(
+                children: List.generate(
+                  reports.length,
+                  (index) => Text(
+                    "${index + 1}: ${reports[index]}",
+                    style: AppFont(color: Colors.grey.shade700, size: 25)
+                        .getFont(),
+                  ),
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(40),
+                child: Text(
+                  "There are no reports in the history, create a new report",
+                  textAlign: TextAlign.center,
+                  style:
+                      AppFont(color: Colors.grey.shade700, size: 25).getFont(),
+                ),
+              ),
       ),
     );
   }
