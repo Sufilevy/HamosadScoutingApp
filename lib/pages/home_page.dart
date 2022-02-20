@@ -48,6 +48,20 @@ class _HomePageState extends State<HomePage> {
         buttons: [
           GestureDetector(
             child: Icon(
+              Icons.history_rounded,
+              color: accentColor,
+              size: 35,
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HistoryPage()),
+              );
+              SystemSound.play(SystemSoundType.click);
+            },
+          ),
+          GestureDetector(
+            child: Icon(
               Icons.info_outline_rounded,
               color: accentColor,
               size: 35,
@@ -59,7 +73,7 @@ class _HomePageState extends State<HomePage> {
               );
               SystemSound.play(SystemSoundType.click);
             },
-          )
+          ),
         ],
         showLogo: true,
       ),
@@ -160,6 +174,7 @@ class _HomePageState extends State<HomePage> {
                         }.entries);
 
                         creatingNewReport = true;
+                        reportId = generateReportId();
 
                         Navigator.push(
                           context,
@@ -203,6 +218,7 @@ class _HomePageState extends State<HomePage> {
 
                         creatingNewReport = false;
 
+                        reportId = lastReport.keys.first;
                         Navigator.push(
                           context,
                           MaterialPageRoute(

@@ -6,7 +6,7 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
   final Size preferredSize;
   final String title;
   final bool automaticallyImplyLeading;
-  final List<Widget>? actionButtons;
+  late final Row actionButtons;
   final Widget? leading;
   final bool showLogo;
 
@@ -18,21 +18,24 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
       this.leading,
       this.showLogo = false})
       : preferredSize = const Size.fromHeight(56),
-        actionButtons = [],
         super(key: key) {
     if (buttons != null) {
       if (buttons != null && buttons!.isNotEmpty) {
-        for (final button in buttons!) {
-          actionButtons?.add(
-            Align(
+        actionButtons = Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: List.generate(
+            buttons.length,
+            (index) => Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.all(20),
-                child: button,
+                padding: const EdgeInsets.all(8),
+                child: buttons[index],
               ),
             ),
-          );
-        }
+          ),
+        );
+      } else {
+        actionButtons = Row();
       }
     }
   }
@@ -64,7 +67,10 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
               ),
             ),
           ),
-          ...?actionButtons,
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: actionButtons,
+          ),
         ],
       ),
       automaticallyImplyLeading: automaticallyImplyLeading,

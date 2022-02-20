@@ -124,10 +124,11 @@ mixin SubmitButton {
                       text: "SUBMIT",
                       onPressed: () {
                         if (creatingNewReport) {
-                          lastReport = generateReportData();
+                          lastReport = generateReportData(id: reportId);
+                          reports.add(reportId);
                         } else {
                           lastReport = generateReportData(
-                            id: lastReport.keys.first,
+                            id: reportId,
                             reporterName: lastReport["reporterName"],
                             reporterTeam: lastReport["reporterTeam"],
                           );

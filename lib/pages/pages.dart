@@ -10,10 +10,13 @@ export 'autonomus_page.dart';
 export 'teleop_page.dart';
 export 'endgame_page.dart';
 export 'summary_page.dart';
+export 'history_page.dart';
 
 Color accentColor = Colors.green.shade700;
 var pages = {};
 bool creatingNewReport = true;
+String reportId = "";
+List<String> reports = [];
 
 class AppFont {
   final Color? color;
