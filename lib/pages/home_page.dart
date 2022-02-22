@@ -53,6 +53,44 @@ class _HomePageState extends State<HomePage> {
         buttons: [
           GestureDetector(
             child: Icon(
+              Icons.library_books_rounded,
+              color: accentColor,
+              size: 35,
+            ),
+            onTap: () {
+              SystemSound.play(SystemSoundType.click);
+              showDialog(
+                context: context,
+                builder: (context) => PopupDialog(
+                  context,
+                  title: "Report Type",
+                  body: '''Choose the type of the report you want to submit.
+
+Pit Report - A pre-game report about the robot's structure.
+
+Game Report - A mid-game report about the robot's performance.''',
+                  buttons: [
+                    PopupDialogButton(
+                      text: "PIT",
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        setState(() => reportType = ReportType.pit);
+                      },
+                    ),
+                    PopupDialogButton(
+                      text: "GAME",
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        setState(() => reportType = ReportType.game);
+                      },
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+          GestureDetector(
+            child: Icon(
               Icons.history_rounded,
               color: accentColor,
               size: 35,
@@ -102,7 +140,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   Text(
-                    "Create a\nnew report",
+                    "Create a new\n ${reportType == ReportType.game ? "game" : "pit"} report",
                     textAlign: TextAlign.center,
                     style: AppFont(
                             size: screenSize / 7.2, color: Colors.grey.shade700)
@@ -169,13 +207,18 @@ class _HomePageState extends State<HomePage> {
                           FocusNode(),
                         );
 
-                        pages.addEntries({
-                          "info": GeneralInformationPage(),
-                          "autonomus": AutonomusPage(),
-                          "teleop": TeleopPage(),
-                          "endgame": EndgamePage(),
-                          "summary": SummaryPage(),
-                        }.entries);
+                        pages.addEntries(reportType == ReportType.game
+                            ? {
+                                "info": GeneralInformationPage(),
+                                "autonomus": AutonomusPage(),
+                                "teleop": TeleopPage(),
+                                "endgame": EndgamePage(),
+                                "summary": SummaryPage(),
+                              }.entries
+                            : {
+                                "pit_info": PitInformation(),
+                                "pit": PitReport(),
+                              }.entries);
 
                         creatingNewReport = true;
                         reportId = generateReportId();
@@ -183,7 +226,9 @@ class _HomePageState extends State<HomePage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => pages["info"]!,
+                            builder: (context) => reportType == ReportType.game
+                                ? pages["info"]
+                                : pages["pit_info"],
                           ),
                         );
                       }
@@ -221,12 +266,14 @@ class _HomePageState extends State<HomePage> {
                             );
 
                             creatingNewReport = false;
-
                             reportId = lastReport.keys.first;
+
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => pages["info"]!,
+                                builder: (context) => lastReport[reportId]["drivingType"] != null
+                                    ? pages["pit_info"]
+                                    : pages["info"],
                               ),
                             );
                           }

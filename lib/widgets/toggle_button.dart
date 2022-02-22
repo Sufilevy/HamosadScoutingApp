@@ -20,14 +20,13 @@ class ToggleButton extends StatefulWidget {
 }
 
 class _ToggleButtonState extends State<ToggleButton> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Transform.scale(
             scale: 1.5,

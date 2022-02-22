@@ -124,14 +124,22 @@ mixin SubmitButton {
                       text: "SUBMIT",
                       onPressed: () {
                         if (creatingNewReport) {
-                          lastReport = generateReportData(id: reportId);
+                          lastReport = (reportType == ReportType.game)
+                              ? generateGameReportData(id: reportId)
+                              : generatePitReportData(id: reportId);
                           reports.add(reportId);
                         } else {
-                          lastReport = generateReportData(
-                            id: reportId,
-                            reporterName: lastReport["reporterName"],
-                            reporterTeam: lastReport["reporterTeam"],
-                          );
+                          lastReport = (reportType == ReportType.game)
+                              ? generateGameReportData(
+                                  id: reportId,
+                                  reporterName: lastReport["reporterName"],
+                                  reporterTeam: lastReport["reporterTeam"],
+                                )
+                              : generatePitReportData(
+                                  id: reportId,
+                                  reporterName: lastReport["reporterName"],
+                                  reporterTeam: lastReport["reporterTeam"],
+                                );
                         }
                         sendReportToDatabase();
 

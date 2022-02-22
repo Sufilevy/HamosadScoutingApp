@@ -275,7 +275,7 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
                 style: AppFont(size: 15, color: Colors.grey.shade700).getFont(),
               ),
             ),
-          )
+          ),
         ],
       ),
       floatingActionButton: Stack(
@@ -375,7 +375,8 @@ class _GeneralInformationPageState extends State<GeneralInformationPage>
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => pages["autonomus"]!),
+                        builder: (context) => pages["autonomus"],
+                      ),
                     );
                   }
                 }

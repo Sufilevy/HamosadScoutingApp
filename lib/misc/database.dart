@@ -3,7 +3,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'dart:math';
 
 late FirebaseDatabase database = FirebaseDatabase.instance;
-DatabaseReference reportsReference = database.ref("reports/testing");
+DatabaseReference gameReportsReference = database.ref("pregional/reports");
+DatabaseReference pitReportsReference = database.ref("pregional/pit");
 DatabaseReference gamesReference = database.ref("games");
 dynamic lastReport;
 dynamic gameTeamsData;
@@ -35,7 +36,7 @@ dynamic getDatetime() {
   };
 }
 
-dynamic generateReportData(
+dynamic generateGameReportData(
     {String? id, String? reporterName, String? reporterTeam}) {
   return {
     id ?? generateReportId(): {
@@ -43,6 +44,7 @@ dynamic generateReportData(
       "reporterTeam": reporterTeam ?? pages["home"].reporterTeamData.value,
       "team": int.tryParse(pages["info"].currentTeamData.value) ??
           pages["info"].currentTeamData.value,
+      "datetime": getDatetime(),
       "game": int.tryParse(pages["info"].gameNumberData.value) ??
           pages["info"].gameNumberData.value,
       "alliance": pages["info"].allianceData.value,
@@ -77,11 +79,38 @@ dynamic generateReportData(
         "bar": pages["endgame"].barClimbedData.value.toInt(),
         "notes": pages["endgame"].notesData.value
       },
+    }
+  };
+}
+
+dynamic generatePitReportData(
+    {String? id, String? reporterName, String? reporterTeam}) {
+  return {
+    id ?? generateReportId(): {
+      "reporterName": reporterName ?? pages["home"].reporterNameData.value,
+      "reporterTeam": reporterTeam ?? pages["home"].reporterTeamData.value,
+      "team": int.tryParse(pages["pit_info"].currentTeamData.value) ??
+          pages["info"].currentTeamData.value,
       "datetime": getDatetime(),
+      "drivingType": pages["pit"].drivingTypeData.value,
+      "canShootUpper": pages["pit"].canShootUpperData.value,
+      "canShootLower": pages["pit"].canShootLowerData.value,
+      "canAdjustShootAngle": pages["pit"].canAdjustShootAngleData.value,
+      "hasTurret": pages["pit"].hasTurretData.value,
+      "canShootDynamically": pages["pit"].canShootDynamicallyData.value,
+      "canShootWhileMoving": pages["pit"].canShootWhileMovingData.value,
+      "whichBarCanClimb": pages["pit"].whichBarCanClimbData.value,
+      "shootingHeight": pages["pit"].shootingHeightData.value,
+      "weaknesses": pages["pit"].weaknessesData.value,
+      "notes": pages["pit"].notesData.value,
     }
   };
 }
 
 void sendReportToDatabase() async {
-  await reportsReference.update(lastReport);
+  if (reportType == ReportType.game) {
+    await gameReportsReference.update(lastReport);
+  } else {
+    await pitReportsReference.update(lastReport);
+  }
 }

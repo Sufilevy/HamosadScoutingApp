@@ -11,12 +11,16 @@ export 'teleop_page.dart';
 export 'endgame_page.dart';
 export 'summary_page.dart';
 export 'history_page.dart';
+export 'pit_report.dart';
+export 'pit_information.dart';
 
 Color accentColor = Colors.green.shade700;
 var pages = {};
 bool creatingNewReport = true;
 String reportId = "";
 List<String> reports = [];
+enum ReportType { game, pit }
+ReportType reportType = ReportType.game;
 
 class AppFont {
   final Color? color;

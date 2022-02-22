@@ -9,3 +9,4 @@ export 'text_edit.dart';
 export 'widget_list.dart';
 export 'options_slider.dart';
 export 'dropdown_menu.dart';
+export 'toggle_buttons.dart';
