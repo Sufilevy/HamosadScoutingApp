@@ -9,7 +9,7 @@ class AutonomusPage extends StatefulWidget {
   final DataContainer<bool> robotMovedData = DataContainer(false);
   final DataContainer<int> ballsPickedFloorData = DataContainer(0);
   final DataContainer<int> ballsPickedFeederData = DataContainer(0);
-  final DataContainer<int> ballsShotData = DataContainer(0);
+  final DataContainer<int> ballsMissedData = DataContainer(0);
   final DataContainer<int> lowerScoreData = DataContainer(0);
   final DataContainer<int> upperScoreData = DataContainer(0);
   final DataContainer<String> notesData = DataContainer("");
@@ -23,7 +23,7 @@ class _AutonomusPageState extends State<AutonomusPage>
   late final ToggleButton robotMoved;
   late final ScoreCounter ballsPickedFloorCounter;
   late final ScoreCounter ballsPickedFeederCounter;
-  late final ScoreCounter ballsShotCounter;
+  late final ScoreCounter ballsMissedCounter;
   late final ScoreCounter lowerScoreCounter;
   late final ScoreCounter upperScoreCounter;
   late final TextEdit notes;
@@ -42,9 +42,9 @@ class _AutonomusPageState extends State<AutonomusPage>
       title: "Balls picked from feeder:",
       container: widget.ballsPickedFeederData,
     );
-    ballsShotCounter = ScoreCounter(
-      title: "Balls shot:",
-      container: widget.ballsShotData,
+    ballsMissedCounter = ScoreCounter(
+      title: "Balls missed:",
+      container: widget.ballsMissedData,
     );
     lowerScoreCounter = ScoreCounter(
       title: "Balls entered the lower hub:",
@@ -78,7 +78,7 @@ class _AutonomusPageState extends State<AutonomusPage>
           robotMoved,
           ballsPickedFloorCounter,
           ballsPickedFeederCounter,
-          ballsShotCounter,
+          ballsMissedCounter,
           lowerScoreCounter,
           upperScoreCounter,
           notes,

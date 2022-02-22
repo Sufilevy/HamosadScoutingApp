@@ -28,7 +28,7 @@ class _ScoreCounterState extends State<ScoreCounter> {
           padding: const EdgeInsets.all(5),
           child: Text(
             widget.title,
-            style: AppFont(size: 27).getFont(),
+            style: AppFont(size: 25).getFont(),
           ),
         ),
         Padding(
@@ -53,7 +53,7 @@ class _ScoreCounterState extends State<ScoreCounter> {
                   )
                 },
                 child: Padding(
-                  padding: const EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(2),
                   child: Text(
                     (widget.modifier * -1).toString(),
                     style:
@@ -65,13 +65,13 @@ class _ScoreCounterState extends State<ScoreCounter> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(10, 4, 10, 4),
                 child: Container(
-                  padding: const EdgeInsets.all(7),
+                  padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     border: Border.all(color: accentColor, width: 2),
                   ),
                   child: Text(
                     widget.scoreData.value.toString().padLeft(4, '0'),
-                    style: AppFont(size: 27).getFont(),
+                    style: AppFont(size: 25).getFont(),
                   ),
                 ),
               ),
@@ -86,7 +86,7 @@ class _ScoreCounterState extends State<ScoreCounter> {
                 onPressed: () =>
                     {setState(() => widget.scoreData.value += widget.modifier)},
                 child: Padding(
-                  padding: const EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(2),
                   child: Text(
                     '+' + widget.modifier.toString(),
                     style:

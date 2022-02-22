@@ -12,10 +12,9 @@ class TeleopPage extends StatefulWidget {
 
   final DataContainer<int> ballsPickedFloorData = DataContainer(0);
   final DataContainer<int> ballsPickedFeederData = DataContainer(0);
-  final DataContainer<int> ballsShotData = DataContainer(0);
+  final DataContainer<int> ballsMissedData = DataContainer(0);
   final DataContainer<int> lowerScoreData = DataContainer(0);
   final DataContainer<int> upperScoreData = DataContainer(0);
-  final DataContainer<double> robotHubFocusData = DataContainer(1.0);
   final DataContainer<String> notesData = DataContainer("");
 
   @override
@@ -29,10 +28,9 @@ class _TeleopPageState extends State<TeleopPage>
   late final ToggleButton canShootDynamically;
   late final ScoreCounter ballsPickedFloorCounter;
   late final ScoreCounter ballsPickedFeederCounter;
-  late final ScoreCounter ballsShotCounter;
+  late final ScoreCounter ballsMissedCounter;
   late final ScoreCounter lowerScoreCounter;
   late final ScoreCounter upperScoreCounter;
-  late final OptionsSlider robotHubFocus;
   late final TextEdit notes;
 
   @override
@@ -42,7 +40,7 @@ class _TeleopPageState extends State<TeleopPage>
       container: widget.canShootWhileMovingData,
     );
     canShootDynamically = ToggleButton(
-      title: "Can the robot shoot from multiple places?",
+      title: "Does the robot need an anchor point to shoot?",
       container: widget.canShootDynamicallyData,
     );
     canPickMultiple = ToggleButton(
@@ -57,9 +55,9 @@ class _TeleopPageState extends State<TeleopPage>
       title: "Balls picked from feeder:",
       container: widget.ballsPickedFeederData,
     );
-    ballsShotCounter = ScoreCounter(
-      title: "Balls shot:",
-      container: widget.ballsShotData,
+    ballsMissedCounter = ScoreCounter(
+      title: "Balls missed:",
+      container: widget.ballsMissedData,
     );
     lowerScoreCounter = ScoreCounter(
       title: "Balls entered the lower hub:",
@@ -68,15 +66,6 @@ class _TeleopPageState extends State<TeleopPage>
     upperScoreCounter = ScoreCounter(
       title: "Balls entered the upper hub:",
       container: widget.upperScoreData,
-    );
-
-    robotHubFocus = OptionsSlider(
-      title: "Robot's main hub focus:",
-      container: widget.robotHubFocusData,
-      min: 1,
-      max: 5,
-      leftTitle: "< Lower",
-      rightTitle: "Upper >",
     );
     notes = TextEdit(
       title: "Additional Notes:",
@@ -104,10 +93,9 @@ class _TeleopPageState extends State<TeleopPage>
           canPickMultiple,
           ballsPickedFloorCounter,
           ballsPickedFeederCounter,
-          ballsShotCounter,
+          ballsMissedCounter,
           lowerScoreCounter,
           upperScoreCounter,
-          robotHubFocus,
           notes,
         ],
       ),
