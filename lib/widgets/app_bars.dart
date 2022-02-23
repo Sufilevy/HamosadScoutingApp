@@ -28,7 +28,7 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
             (index) => Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.all(8),
+                padding: const EdgeInsets.fromLTRB(6, 8, 6, 8),
                 child: buttons[index],
               ),
             ),

@@ -54,7 +54,7 @@ dynamic generateGameReportData(
         "moved": pages["autonomus"].robotMovedData.value,
         "pickedFloor": pages["autonomus"].ballsPickedFloorData.value,
         "pickedFeeder": pages["autonomus"].ballsPickedFeederData.value,
-        "missed": pages["autonomus"].ballsMissed.value,
+        "missed": pages["autonomus"].ballsMissedData.value,
         "lower": pages["autonomus"].lowerScoreData.value,
         "upper": pages["autonomus"].upperScoreData.value,
         "score": pages["autonomus"].lowerScoreData.value * 2 +
@@ -67,7 +67,7 @@ dynamic generateGameReportData(
         "canPickMultiple": pages["teleop"].canPickMultipleData.value,
         "pickedFloor": pages["teleop"].ballsPickedFloorData.value,
         "pickedFeeder": pages["teleop"].ballsPickedFeederData.value,
-        "missed": pages["teleop"].ballsMissed.value,
+        "missed": pages["teleop"].ballsMissedData.value,
         "lower": pages["teleop"].lowerScoreData.value,
         "upper": pages["teleop"].upperScoreData.value,
         "score": pages["teleop"].lowerScoreData.value +

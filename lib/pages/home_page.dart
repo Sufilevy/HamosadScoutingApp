@@ -105,6 +105,20 @@ Game Report - A mid-game report about the robot's performance.''',
           ),
           GestureDetector(
             child: Icon(
+              Icons.help_center_rounded,
+              color: accentColor,
+              size: 35,
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const HelpPage()),
+              );
+              SystemSound.play(SystemSoundType.click);
+            },
+          ),
+          GestureDetector(
+            child: Icon(
               Icons.info_outline_rounded,
               color: accentColor,
               size: 35,
@@ -271,9 +285,10 @@ Game Report - A mid-game report about the robot's performance.''',
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => lastReport[reportId]["drivingType"] != null
-                                    ? pages["pit_info"]
-                                    : pages["info"],
+                                builder: (context) =>
+                                    lastReport[reportId]["drivingType"] != null
+                                        ? pages["pit_info"]
+                                        : pages["info"],
                               ),
                             );
                           }

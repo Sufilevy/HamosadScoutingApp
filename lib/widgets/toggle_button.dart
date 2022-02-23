@@ -23,7 +23,7 @@ class _ToggleButtonState extends State<ToggleButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+      padding: const EdgeInsets.fromLTRB(40, 0, 40, 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -50,7 +50,7 @@ class _ToggleButtonState extends State<ToggleButton> {
             child: TextButton(
               child: Text(widget.title,
                   maxLines: 2,
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.left,
                   softWrap: true,
                   style: AppFont(size: 22.5).getFont()),
               onPressed: () => setState(
