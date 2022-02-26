@@ -103,8 +103,8 @@ class _TeleopPageState extends State<TeleopPage>
       body: WidgetList(
         children: [
           canShootWhileMoving,
-          cantShootDynamically,
           canPickMultiple,
+          cantShootDynamically,
           widget.cantShootDynamicallyData.value ? anchorPoint : Container(),
           ballsPickedFeederCounter,
           ballsPickedFloorCounter,
