@@ -8,8 +8,8 @@ class TeleopPage extends StatefulWidget {
 
   final DataContainer<bool> canShootWhileMovingData = DataContainer(false);
   final DataContainer<bool> canPickMultipleData = DataContainer(false);
-  final DataContainer<bool> canShootDynamicallyData = DataContainer(false);
-
+  final DataContainer<bool> cantShootDynamicallyData = DataContainer(false);
+  final DataContainer<String> anchorPointData = DataContainer("");
   final DataContainer<int> ballsPickedFloorData = DataContainer(0);
   final DataContainer<int> ballsPickedFeederData = DataContainer(0);
   final DataContainer<int> ballsMissedData = DataContainer(0);
@@ -25,7 +25,8 @@ class _TeleopPageState extends State<TeleopPage>
     with LastPageButton, NextPageButton {
   late final ToggleButton canShootWhileMoving;
   late final ToggleButton canPickMultiple;
-  late final ToggleButton canShootDynamically;
+  late final ToggleButton cantShootDynamically;
+  late final TextEdit anchorPoint;
   late final ScoreCounter ballsPickedFloorCounter;
   late final ScoreCounter ballsPickedFeederCounter;
   late final ScoreCounter ballsMissedCounter;
@@ -39,13 +40,26 @@ class _TeleopPageState extends State<TeleopPage>
       title: "Can the robot shoot while moving?",
       container: widget.canShootWhileMovingData,
     );
-    canShootDynamically = ToggleButton(
-      title: "Does the robot need an anchor point to shoot?",
-      container: widget.canShootDynamicallyData,
-    );
     canPickMultiple = ToggleButton(
       title: "Can the robot pick up more than one ball at once?",
       container: widget.canPickMultipleData,
+    );
+    cantShootDynamically = ToggleButton(
+      title: "Does the robot need an anchor point to shoot?",
+      container: widget.cantShootDynamicallyData,
+      onChanged: (newValue) {
+        setState(
+          () {
+            widget.cantShootDynamicallyData.value = newValue;
+          },
+        );
+      },
+    );
+    anchorPoint = TextEdit(
+      title: "Anchor point...",
+      container: widget.anchorPointData,
+      lines: 1,
+      titleInLine: true,
     );
     ballsPickedFloorCounter = ScoreCounter(
       title: "Balls picked from floor:",
@@ -89,8 +103,9 @@ class _TeleopPageState extends State<TeleopPage>
       body: WidgetList(
         children: [
           canShootWhileMoving,
-          canShootDynamically,
+          cantShootDynamically,
           canPickMultiple,
+          widget.cantShootDynamicallyData.value ? anchorPoint : Container(),
           ballsPickedFeederCounter,
           ballsPickedFloorCounter,
           ballsMissedCounter,

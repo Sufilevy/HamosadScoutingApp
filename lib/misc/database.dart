@@ -94,7 +94,8 @@ dynamic generateGameReportData(
       },
       "stageTeleop": {
         "canShootWhileMoving": pages["teleop"].canShootWhileMovingData.value,
-        "canShootDynamically": pages["teleop"].canShootDynamicallyData.value,
+        "cantShootDynamically": pages["teleop"].cantShootDynamicallyData.value,
+        "anchorPoint": pages["teleop"].anchorPointData.value,
         "canPickMultiple": pages["teleop"].canPickMultipleData.value,
         "pickedFloor": pages["teleop"].ballsPickedFloorData.value,
         "pickedFeeder": pages["teleop"].ballsPickedFeederData.value,
@@ -120,20 +121,25 @@ dynamic generatePitReportData(
     {String? id, String? reporterName, String? reporterTeam}) {
   return {
     id ?? generateReportId(): {
-      "reporterName": reporterName ?? pages["home"].reporterNameData.value,
-      "reporterTeam": reporterTeam ?? pages["home"].reporterTeamData.value,
-      "team": int.tryParse(pages["pit_info"].currentTeamData.value) ??
-          pages["info"].currentTeamData.value,
-      "datetime": getDatetime(),
+      "info": {
+        "reporterName": reporterName ?? pages["home"].reporterNameData.value,
+        "reporterTeam": reporterTeam ?? pages["home"].reporterTeamData.value,
+        "teamNumber": int.tryParse(pages["pit_info"].currentTeamData.value) ??
+            pages["info"].currentTeamData.value,
+        "datetime": getDatetime(),
+      },
+      "shooting": {
+        "canShootUpper": pages["pit"].canShootUpperData.value,
+        "canShootLower": pages["pit"].canShootLowerData.value,
+        "canAdjustShootAngle": pages["pit"].canAdjustShootAngleData.value,
+        "hasTurret": pages["pit"].hasTurretData.value,
+        "canShootWhileMoving": pages["pit"].canShootWhileMovingData.value,
+        "cantShootDynamically": pages["pit"].cantShootDynamicallyData.value,
+        "anchorPoint": pages["pit"].anchorPointData.value,
+        "shootingHeight": pages["pit"].shootingHeightData.value,
+      },
       "drivingType": pages["pit"].drivingTypeData.value,
-      "canShootUpper": pages["pit"].canShootUpperData.value,
-      "canShootLower": pages["pit"].canShootLowerData.value,
-      "canAdjustShootAngle": pages["pit"].canAdjustShootAngleData.value,
-      "hasTurret": pages["pit"].hasTurretData.value,
-      "canShootDynamically": pages["pit"].canShootDynamicallyData.value,
-      "canShootWhileMoving": pages["pit"].canShootWhileMovingData.value,
       "whichBarCanClimb": pages["pit"].whichBarCanClimbData.value,
-      "shootingHeight": pages["pit"].shootingHeightData.value,
       "weaknesses": pages["pit"].weaknessesData.value,
       "notes": pages["pit"].notesData.value,
     }

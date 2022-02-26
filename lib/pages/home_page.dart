@@ -39,14 +39,14 @@ class _HomePageState extends State<HomePage> {
     );
     super.initState();
   }
-
+  
   @override
   Widget build(BuildContext context) {
     bool keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenSize = (screenHeight * screenWidth) / 1000;
-
+    
     return Scaffold(
       appBar: PageAppBar(
         title: "",

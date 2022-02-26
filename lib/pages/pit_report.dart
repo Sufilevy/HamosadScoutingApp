@@ -10,8 +10,9 @@ class PitReport extends StatefulWidget {
   final DataContainer<bool> canShootLowerData = DataContainer(false);
   final DataContainer<bool> canAdjustShootAngleData = DataContainer(false);
   final DataContainer<bool> hasTurretData = DataContainer(false);
-  final DataContainer<bool> canShootDynamicallyData = DataContainer(false);
   final DataContainer<bool> canShootWhileMovingData = DataContainer(false);
+  final DataContainer<bool> cantShootDynamicallyData = DataContainer(false);
+  final DataContainer<String> anchorPointData = DataContainer("");
   final DataContainer<List<int>> whichBarCanClimbData = DataContainer([]);
   final DataContainer<String> shootingHeightData = DataContainer("");
   final DataContainer<String> weaknessesData = DataContainer("");
@@ -30,7 +31,8 @@ class _PitReportState extends State<PitReport>
   late final ToggleButton canShootLower;
   late final ToggleButton canAdjustShootingAngle;
   late final ToggleButton hasTurret;
-  late final ToggleButton canShootDynamically;
+  late final ToggleButton cantShootDynamically;
+  late final TextEdit anchorPoint;
   late final ToggleButton canShootWhileMoving;
   late final ToggleButtons whichBarsCanClimb;
   late final DropdownMenu shootingHeight;
@@ -40,18 +42,21 @@ class _PitReportState extends State<PitReport>
   @override
   void initState() {
     drivingType = DropdownMenu(
-        title: "Driving Type:",
-        items: const ["Swerve", "Tank", "Other..."],
-        onChanged: (newValue) {
-          setState(() {
+      title: "Driving Type:",
+      items: const ["Swerve", "Tank", "Other..."],
+      onChanged: (newValue) {
+        setState(
+          () {
             if (newValue == "Other...") {
               drivingIsOther = true;
             } else {
               drivingIsOther = false;
               widget.drivingTypeData.value = newValue;
             }
-          });
-        });
+          },
+        );
+      },
+    );
     drivingOther = TextEdit(
       title: "Other...",
       container: widget.drivingTypeData,
@@ -74,14 +79,28 @@ class _PitReportState extends State<PitReport>
       title: "Does the robot have a shooting turret?",
       container: widget.hasTurretData,
     );
-    canShootDynamically = ToggleButton(
-      title: "Can the robot shoot from more than one spot?",
-      container: widget.canShootDynamicallyData,
+    cantShootDynamically = ToggleButton(
+      title: "Does the robot need an anchor point to shoot?",
+      container: widget.cantShootDynamicallyData,
+      onChanged: (newValue) {
+        setState(
+          () {
+            widget.cantShootDynamicallyData.value = newValue;
+          },
+        );
+      },
+    );
+    anchorPoint = TextEdit(
+      title: "Anchor point...",
+      container: widget.anchorPointData,
+      lines: 1,
+      titleInLine: true,
     );
     canShootWhileMoving = ToggleButton(
       title: "Can the robot shoot while moving?",
       container: widget.canShootWhileMovingData,
     );
+
     whichBarsCanClimb = ToggleButtons(
         title: "Which bars can the robot climb?",
         titles: const [
@@ -130,7 +149,8 @@ class _PitReportState extends State<PitReport>
           canShootLower,
           canAdjustShootingAngle,
           hasTurret,
-          canShootDynamically,
+          cantShootDynamically,
+          widget.cantShootDynamicallyData.value ? anchorPoint : Container(),
           canShootWhileMoving,
           whichBarsCanClimb,
           shootingHeight,
