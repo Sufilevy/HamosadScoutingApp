@@ -40,7 +40,7 @@ class GeneralInformationPage extends StatefulWidget {
 
 class _GeneralInformationPageState extends State<GeneralInformationPage>
     with CancelReportButton, NextPageButton {
-  final List<String> games = List<int>.generate(11, (i) => i + 1)
+  final List<String> games = List<int>.generate(numberOfGames, (i) => i + 1)
           .map(
             (v) => v.toString(),
           )

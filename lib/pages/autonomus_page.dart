@@ -76,8 +76,8 @@ class _AutonomusPageState extends State<AutonomusPage>
       body: WidgetList(
         children: [
           robotMoved,
-          ballsPickedFloorCounter,
           ballsPickedFeederCounter,
+          ballsPickedFloorCounter,
           ballsMissedCounter,
           lowerScoreCounter,
           upperScoreCounter,

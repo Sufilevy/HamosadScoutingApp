@@ -128,8 +128,9 @@ mixin SubmitButton {
                               ? generateGameReportData(id: reportId)
                               : generatePitReportData(id: reportId);
                           reports.add(reportId);
+                          lastReportType = reportType;
                         } else {
-                          lastReport = (reportType == ReportType.game)
+                          lastReport = (lastReportType == ReportType.game)
                               ? generateGameReportData(
                                   id: reportId,
                                   reporterName: lastReport["reporterName"],

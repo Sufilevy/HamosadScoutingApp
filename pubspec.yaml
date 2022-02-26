@@ -70,7 +70,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/png/hamosad_logo_color_transperent.png
-    - assets/png/hamosad_logo_dark_transperent.png
+    - assets/png/hamosad_logo_green_transperent.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

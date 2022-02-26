@@ -49,10 +49,11 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
               ? Align(
                   alignment: Alignment.centerLeft,
                   child: ImageIcon(
-                      const AssetImage(
-                          "assets/png/hamosad_logo_dark_transperent.png"),
-                      size: 70,
-                      color: accentColor),
+                    const AssetImage(
+                        "assets/png/hamosad_logo_green_transperent.png"),
+                    size: 70,
+                    color: accentColor,
+                  ),
                 )
               : Container(),
           Align(

@@ -22,6 +22,7 @@ String reportId = "";
 List<String> reports = [];
 enum ReportType { game, pit }
 ReportType reportType = ReportType.game;
+ReportType lastReportType = ReportType.game;
 
 class AppFont {
   final Color? color;

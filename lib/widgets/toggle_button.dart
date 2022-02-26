@@ -32,7 +32,8 @@ class _ToggleButtonState extends State<ToggleButton> {
             scale: 1.5,
             alignment: Alignment.center,
             child: Checkbox(
-              shape: const CircleBorder(),
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(3))),
               checkColor: Theme.of(context).canvasColor,
               fillColor: MaterialStateProperty.all<Color>(accentColor),
               value: widget.toggledData.value,

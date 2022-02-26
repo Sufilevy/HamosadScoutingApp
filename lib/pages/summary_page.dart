@@ -20,8 +20,8 @@ class _SummaryPageState extends State<SummaryPage>
     container: widget.robotFocusData,
     min: 1,
     max: 5,
-    leftTitle: "< Defending",
-    rightTitle: "Scoring >",
+    leftTitle: "< Scoring",
+    rightTitle: "Defending >",
   );
   int endgameScore = 0, autonomusScore = 0, teleopScore = 0;
 
@@ -48,10 +48,8 @@ class _SummaryPageState extends State<SummaryPage>
         break;
     }
     autonomusScore = pages["autonomus"].lowerScoreData.value * 2 +
-            pages["autonomus"].upperScoreData.value * 4 +
-            (pages["autonomus"].robotMovedData.value
-        ? 2
-        : 0);
+        pages["autonomus"].upperScoreData.value * 4 +
+        (pages["autonomus"].robotMovedData.value ? 2 : 0);
     teleopScore = pages["teleop"].lowerScoreData.value +
         pages["teleop"].upperScoreData.value * 2;
 
