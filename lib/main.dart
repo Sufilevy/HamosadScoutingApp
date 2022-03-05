@@ -59,7 +59,7 @@ class WindowsApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: Text(
-            "This app is not supported by Windows.\nYou can try it in Android, iOS and web.",
+            "This app is not supported by Windows.\nYou can try it on Android, iOS or the Web.\nWebsite: scouting.hamosad1657.com",
             style: AppFont(size: 45, fontWeight: FontWeight.bold).getFont(),
           ),
         ),

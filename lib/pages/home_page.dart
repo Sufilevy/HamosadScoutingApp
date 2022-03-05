@@ -45,7 +45,10 @@ class _HomePageState extends State<HomePage> {
     bool keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
-    final double screenSize = (screenHeight * screenWidth) / 1000;
+    double screenSize = (screenHeight * screenWidth) / 1000;
+    if (screenSize > 300) {
+      screenSize = 300;
+    }
 
     return Scaffold(
       appBar: PageAppBar(
