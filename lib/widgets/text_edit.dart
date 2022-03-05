@@ -51,48 +51,51 @@ class _TextEditState extends State<TextEdit> {
     textController
         .addListener(() => widget.textData.value = textController.value.text);
 
-    return Column(
-      children: [
-        if (!widget.titleInLine)
-          Text(
-            widget.title,
-            style: AppFont(size: 22.5, color: widget.color ?? accentColor)
-                .getFont(),
-          ),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              border: Border.all(color: widget.color ?? accentColor),
-              borderRadius: const BorderRadius.all(Radius.circular(5)),
+    return Center(
+      child: Column(
+        children: [
+          if (!widget.titleInLine)
+            Text(
+              widget.title,
+              textDirection: currentLang['d'] as TextDirection,
+              style: AppFont(size: 22.5, color: widget.color ?? accentColor)
+                  .getFont(),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: TextField(
-                textDirection: TextDirection.rtl,
-                decoration: widget.titleInLine
-                    ? InputDecoration.collapsed(
-                        hintText: hintText,
-                        hintStyle: AppFont(color: widget.color ?? accentColor)
-                            .getFont(),
-                      )
-                    : const InputDecoration(),
-                textInputAction: TextInputAction.done,
-                textAlign: TextAlign.center,
-                minLines: widget.lines ?? 3,
-                maxLines: widget.lines ?? 3,
-                controller: textController,
-                focusNode: focusNode,
-                style: AppFont(size: widget.size ?? 17.5).getFont(),
-                cursorColor: widget.color ?? accentColor,
-                onChanged: (newValue) => widget.textData.value = newValue,
-                onSubmitted: (newValue) => widget.textData.value = newValue,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(50, 5, 50, 5),
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                border: Border.all(color: widget.color ?? accentColor),
+                borderRadius: const BorderRadius.all(Radius.circular(5)),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: TextField(
+                  textDirection: TextDirection.rtl,
+                  decoration: widget.titleInLine
+                      ? InputDecoration.collapsed(
+                          hintText: hintText,
+                          hintStyle: AppFont(color: widget.color ?? accentColor)
+                              .getFont(),
+                        )
+                      : const InputDecoration(),
+                  textInputAction: TextInputAction.done,
+                  textAlign: TextAlign.center,
+                  minLines: widget.lines ?? 3,
+                  maxLines: widget.lines ?? 3,
+                  controller: textController,
+                  focusNode: focusNode,
+                  style: AppFont(size: widget.size ?? 17.5).getFont(),
+                  cursorColor: widget.color ?? accentColor,
+                  onChanged: (newValue) => widget.textData.value = newValue,
+                  onSubmitted: (newValue) => widget.textData.value = newValue,
+                ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

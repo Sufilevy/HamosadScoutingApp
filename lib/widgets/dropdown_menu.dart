@@ -37,6 +37,7 @@ class _DropdownMenuState extends State<DropdownMenu> {
           padding: const EdgeInsets.only(right: 20),
           child: Text(
             widget.title,
+            textDirection: currentLang['d'] as TextDirection,
             style: AppFont(size: 22.5).getFont(),
           ),
         ),
@@ -52,12 +53,17 @@ class _DropdownMenuState extends State<DropdownMenu> {
               },
             );
           },
-          items: widget.items.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
+          items: widget.items.map<DropdownMenuItem<String>>(
+            (String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(
+                  value,
+                  textDirection: currentLang['d'] as TextDirection,
+                ),
+              );
+            },
+          ).toList(),
         ),
       ],
     );

@@ -13,7 +13,7 @@ class HelpPage extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                "Help",
+                langEntries['help']![currentLang['i']],
                 style: AppFont(
                   size: 23,
                 ).getFont(),

@@ -16,21 +16,18 @@ class SummaryPage extends StatefulWidget {
 class _SummaryPageState extends State<SummaryPage>
     with LastPageButton, SubmitButton {
   late final OptionsSlider robotFocus = OptionsSlider(
-    title: "Robot's main focus:",
+    title: langEntries['focus'][currentLang['i']],
     container: widget.robotFocusData,
     min: 1,
     max: 5,
-    leftTitle: "< Scoring",
-    rightTitle: "Defending >",
+    leftTitle: "< ${langEntries['scoring'][currentLang['i']]}",
+    rightTitle: "${langEntries['defending'][currentLang['i']]} >",
   );
   int endgameScore = 0, autonomusScore = 0, teleopScore = 0;
 
   @override
   void initState() {
     switch (pages["endgame"].barClimbedData.value.toInt()) {
-      case 0:
-        endgameScore = 0;
-        break;
       case 1:
         endgameScore = 4;
         break;
@@ -62,7 +59,7 @@ class _SummaryPageState extends State<SummaryPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PageAppBar(
-        title: "Report Summary",
+        title: langEntries['summary'][currentLang['i']],
       ),
       body: WidgetList(children: [
         Padding(
@@ -71,32 +68,80 @@ class _SummaryPageState extends State<SummaryPage>
         ),
         Padding(
           padding: const EdgeInsets.all(10),
-          child: Text(
-            "Autonomus Score:   $autonomusScore",
-            style: AppFont(size: 25).getFont(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "${langEntries['autonomus_score'][currentLang['i']]}",
+                style: AppFont(size: 25).getFont(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4),
+                child: Text(
+                  autonomusScore.toString(),
+                  style: AppFont(size: 25).getFont(),
+                ),
+              ),
+            ],
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(10),
-          child: Text(
-            "Teleop Score:   $teleopScore",
-            style: AppFont(size: 25).getFont(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "${langEntries['teleop_score'][currentLang['i']]}",
+                style: AppFont(size: 25).getFont(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4),
+                child: Text(
+                  teleopScore.toString(),
+                  style: AppFont(size: 25).getFont(),
+                ),
+              ),
+            ],
           ),
         ),
         Padding(
           padding: const EdgeInsets.all(10),
-          child: Text(
-            "Endgame Score:   $endgameScore",
-            style: AppFont(size: 25).getFont(),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "${langEntries['endgame_score'][currentLang['i']]}",
+                style: AppFont(size: 25).getFont(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4),
+                child: Text(
+                  endgameScore.toString(),
+                  style: AppFont(size: 25).getFont(),
+                ),
+              ),
+            ],
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(20),
-          child: Text(
-            "Total Score:   ${widget.totalScoreData.value}",
-            style: AppFont(size: 30, fontWeight: FontWeight.bold).getFont(),
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "${langEntries['total_score'][currentLang['i']]}",
+                style: AppFont(size: 25).getFont(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4),
+                child: Text(
+                  widget.totalScoreData.value.toString(),
+                  style: AppFont(size: 25).getFont(),
+                ),
+              ),
+            ],
           ),
-        )
+        ),
       ]),
       floatingActionButton: Stack(
         children: [getLastPageButton(context), getSubmitButton(context)],

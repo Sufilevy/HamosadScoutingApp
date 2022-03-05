@@ -18,6 +18,7 @@ void main() async {
     );
     initData();
     getTeams();
+    await getLangEntries();
     runApp(
       const MyApp(),
     );

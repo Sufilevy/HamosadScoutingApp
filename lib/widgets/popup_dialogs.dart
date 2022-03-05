@@ -25,10 +25,12 @@ class PopupDialog extends StatelessWidget {
         _buttons = [],
         super(key: key) {
     for (var button in buttons) {
-      _buttons.add(Expanded(
-        flex: 1,
-        child: Container(),
-      ));
+      _buttons.add(
+        Expanded(
+          flex: 1,
+          child: Container(),
+        ),
+      );
       _buttons.add(
         Expanded(
           flex: 4,
@@ -39,16 +41,19 @@ class PopupDialog extends StatelessWidget {
             ),
             child: Text(
               button._text,
+              textDirection: currentLang['d'] as TextDirection,
               style: AppFont(color: Theme.of(context).canvasColor, size: 20)
                   .getFont(),
             ),
           ),
         ),
       );
-      _buttons.add(Expanded(
-        flex: 1,
-        child: Container(),
-      ));
+      _buttons.add(
+        Expanded(
+          flex: 1,
+          child: Container(),
+        ),
+      );
     }
   }
 
@@ -62,6 +67,7 @@ class PopupDialog extends StatelessWidget {
       ),
       content: Text(
         _body,
+        textDirection: currentLang['d'] as TextDirection,
         textAlign: TextAlign.center,
         style: AppFont(size: 22.5).getFont(),
       ),

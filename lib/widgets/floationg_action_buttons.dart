@@ -10,7 +10,7 @@ mixin CancelReportButton {
           padding: const EdgeInsets.only(left: 30),
           child: FloatingActionButton(
             heroTag: "back",
-            tooltip: "Cancel report",
+            tooltip: langEntries['cancel_report'][currentLang['i']],
             child: Icon(
               Icons.close_rounded,
               color: Theme.of(context).canvasColor,
@@ -21,17 +21,17 @@ mixin CancelReportButton {
                 context: context,
                 builder: (_) => PopupDialog(
                   context,
-                  title: "Cancel Report",
+                  title: langEntries['cancel_report'][currentLang['i']],
                   body:
-                      "Are you sure you want to cancel the report?\nThis will delete all of the information entered.",
+                      "${langEntries['cancel_report_text_1'][currentLang['i']]}${currentLang == Lang.he ? '\n' : ''}${langEntries['cancel_report_text_1.5'][currentLang['i']]}\n${langEntries['cancel_report_text_2'][currentLang['i']]}",
                   buttons: [
                     PopupDialogButton(
-                      text: "YES",
+                      text: langEntries['yes'][currentLang['i']],
                       onPressed: () => Navigator.of(context)
                           .popUntil((route) => route.isFirst),
                     ),
                     PopupDialogButton(
-                      text: "NO",
+                      text: langEntries['no'][currentLang['i']],
                       onPressed: () => Navigator.of(context).pop(),
                     )
                   ],
@@ -50,7 +50,7 @@ mixin LastPageButton {
           padding: const EdgeInsets.only(left: 30),
           child: FloatingActionButton(
             heroTag: "back",
-            tooltip: "Last page",
+            tooltip: langEntries['last_page'][currentLang['i']],
             child: Icon(
               Icons.arrow_back_rounded,
               color: Theme.of(context).canvasColor,
@@ -75,7 +75,7 @@ mixin NextPageButton {
       alignment: Alignment.bottomRight,
       child: FloatingActionButton(
         heroTag: "forward",
-        tooltip: "Next page",
+        tooltip: langEntries['next_page'][currentLang['i']],
         child: Icon(
           Icons.arrow_forward_rounded,
           color: Theme.of(context).canvasColor,
@@ -101,7 +101,7 @@ mixin SubmitButton {
         alignment: Alignment.bottomRight,
         child: FloatingActionButton(
             heroTag: "forward",
-            tooltip: "Submit report",
+            tooltip: langEntries['submit_report'][currentLang['i']],
             child: Icon(
               Icons.check_rounded,
               color: Theme.of(context).canvasColor,
@@ -112,16 +112,16 @@ mixin SubmitButton {
                 context: context,
                 builder: (_) => PopupDialog(
                   context,
-                  title: "Submit Report",
+                  title: langEntries['submit_report'][currentLang['i']],
                   body:
-                      "Are you sure you're finished with your report?\nClick 'SUBMIT' to confirm and send the report, or click 'CANCEL' to keep editing.",
+                      "${langEntries['submit_report_text_1'][currentLang['i']]}\n${langEntries['submit_report_text_2'][currentLang['i']]}",
                   buttons: [
                     PopupDialogButton(
-                      text: "CANCEL",
+                      text: langEntries['cancel'][currentLang['i']],
                       onPressed: () => Navigator.of(context).pop(),
                     ),
                     PopupDialogButton(
-                      text: "SUBMIT",
+                      text: langEntries['submit'][currentLang['i']],
                       onPressed: () {
                         if (creatingNewReport) {
                           lastReport = (reportType == ReportType.game)

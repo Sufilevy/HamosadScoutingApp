@@ -31,31 +31,31 @@ class _AutonomusPageState extends State<AutonomusPage>
   @override
   void initState() {
     robotMoved = ToggleButton(
-      title: "Has the robot exited the taramac?",
+      title: langEntries['exited_tarmac']![currentLang['i']],
       container: widget.robotMovedData,
     );
     ballsPickedFloorCounter = ScoreCounter(
-      title: "Balls picked from floor:",
+      title: langEntries['picked_floor']![currentLang['i']],
       container: widget.ballsPickedFloorData,
     );
     ballsPickedFeederCounter = ScoreCounter(
-      title: "Balls picked from feeder:",
+      title: langEntries['picked_feeder']![currentLang['i']],
       container: widget.ballsPickedFeederData,
     );
     ballsMissedCounter = ScoreCounter(
-      title: "Balls missed:",
+      title: langEntries['missed']![currentLang['i']],
       container: widget.ballsMissedData,
     );
     lowerScoreCounter = ScoreCounter(
-      title: "Balls entered the lower hub:",
+      title: langEntries['lower_hub']![currentLang['i']],
       container: widget.lowerScoreData,
     );
     upperScoreCounter = ScoreCounter(
-      title: "Balls entered the upper hub:",
+      title: langEntries['upper_hub']![currentLang['i']],
       container: widget.upperScoreData,
     );
     notes = TextEdit(
-      title: "Additional Notes:",
+      title: langEntries['additional_notes']![currentLang['i']],
       container: widget.notesData,
     );
     super.initState();
@@ -65,7 +65,7 @@ class _AutonomusPageState extends State<AutonomusPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PageAppBar(
-        title: "Autonomus",
+        title: langEntries['autonomus']![currentLang['i']],
       ),
       floatingActionButton: Stack(
         children: [

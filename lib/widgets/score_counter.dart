@@ -28,6 +28,7 @@ class _ScoreCounterState extends State<ScoreCounter> {
           padding: const EdgeInsets.all(5),
           child: Text(
             widget.title,
+            textDirection: currentLang['d'] as TextDirection,
             style: AppFont(size: 25).getFont(),
           ),
         ),
@@ -56,6 +57,7 @@ class _ScoreCounterState extends State<ScoreCounter> {
                   padding: const EdgeInsets.all(2),
                   child: Text(
                     (widget.modifier * -1).toString(),
+                    textDirection: currentLang['d'] as TextDirection,
                     style:
                         AppFont(color: Theme.of(context).canvasColor, size: 25)
                             .getFont(),

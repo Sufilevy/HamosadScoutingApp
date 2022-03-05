@@ -21,6 +21,7 @@ class _AllianceButtonsState extends State<AllianceButtons> {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: Row(
+        mainAxisAlignment : MainAxisAlignment.center,
         children: [
           DecoratedBox(
             decoration: BoxDecoration(

@@ -1,0 +1,91 @@
+name_prompt,Enter your name...,...הכנס את השם שלך
+team_prompt,Enter your team number...,...הכנס את מספר הקבוצה שלך
+new_report_1,Create a new,צור דוח
+pit_report,pit,פיט
+game_report,game,משחק
+new_report_2,report,חדש
+update_report,Update last report,עדכן דוח קודם
+report_type,Report Type,סוג דוח
+report_type_text_1,Choose report type.,בחר את סוג הדוח שתרצה להגיש
+report_type_text_2,Pit Report - A report about the robot's structure.,דוח פיט - דוח לגבי המבנה של הרובוט
+report_type_text_3,Game Report - A report about the robot's performance.,דוח משחק - דוח לגבי הביצועים של הרובוט
+report_type_game,GAME,משחק
+report_type_pit,PIT,פיט
+history,History,היסטוריה
+history_empty,There are no reports in the history,אין דוחות בהיסטוריה, צור דוח חדש
+about,About,אודות
+app_made_with,This app was made with,האפליקציה הזאת נוצרה עם
+app_made_by,This app was made by,האפליקציה הזאת נוצרה על-ידי
+app_made_by_name,Sufi Levy,סופי לוי
+app_made_for,This app was made for,האפליקציה הזאת נוצרה בשביל
+help,Help,עזרה
+warning,Warning!,!אזהרה
+name_warning,You need to enter your name.,אתה צריך להכניס את השם שלך
+your_team_warning,You need to enter your team number.,אתה צריך להכניס את מספר הקבוצה שלך
+numbers_warning,You can only enter numbers.,אפשר להכניס רק מספרים
+info,General Information,מידע כללי
+game_number,Game Number:,מספר משחק -
+eighth_final,Eighth-Final,שמינית גמר
+quarter_final,Quarter-Final,קבע גמר
+semi_final,Semi-Final,חצי גמר
+final,Final,גמר
+team_number,Team Number:,:מספר קבוצה
+blue_alliance,Blue Alliance,ברית כחולה
+red_alliance,Red Alliance,ברית אדומה
+choose_team_warning,You need to choose a team before continuing.,אתה צריך לבחור קבוצה לפני שתמשיך
+choose_game_warning,You need to choose a game number before continuing.,אתה צריך לבחור מספר משחק לפני שתמשיך
+team_warning,You need to enter a team number before continuing.,אתה צריך להכניס מספר קבוצה לפני שתמשיך
+report_id,Report ID:,מספר דוח - 
+autonomus,Autonomus,אוטונומי
+exited_tarmac,Has the robot exited the tarmac?,הרובוט עזב את הטארמק
+picked_feeder,Balls picked from the terminal:,:כדורים שנאספו מהטרמינל
+picked_floor,Balls picked from the floor:,:כדורים שנאספו מהרצפה
+missed,Balls missed:,:כדורים שפספסו
+lower_hub,Balls entered the lower hub:,:כדורים שנכנסו להאב התחתון
+upper_hub,Balls entered the upper hub:,:כדורים שנכנסו להאב העליון
+additional_notes,Additional notes:,:הערות נוספות
+teleop,Teleop,טלאופ
+shoot_while_moving,Can the robot shoot while moving?,הרובוט יכול לירות תוך כדי תנועה
+pick_up_multiple,Can the robot pick up more than one ball at once?,הרובוט יכול לאסוף יותר מכדור אחד בבת אחת
+cant_shoot_dynamically,Does the robot need an anchor point to shoot?,הרובוט צריך נקודת עוגן כדי לירות
+anchor_point,Anchor point...,...נקודת עוגן
+endgame,Endgame,סוף-משחק
+climbed_to_bar,The robot has climbed to bar:,:הרובוט טיפס לבאר
+summary,Report Summary,סיכום דוח
+focus,Robot's main focus:,:ההתרכזות העקרית של הרובוט
+scoring,Scoring,נקודות
+defending,Defending,הגנה
+autonomus_score,Autonomus Score:,:נקודות באוטונומי
+teleop_score,Teleop Score:,:נקודות בטלאופ
+endgame_score,Endgame Score:,:נקודות בסוף-משחק
+total_score,Total Score:,:סך הנקודות
+submit_report,Submit Report,הגש דוח
+submit_report_text_1,Are you sure you're finished with your report?,?סיימת עם הדוח
+submit_report_text_2,"Click 'SUBMIT' to confirm and send the report, or click 'CANCEL' to keep editing.","תלחץ 'הגש' כדי לשלוח את הדוח, או תלחץ 'ביטול' כדי להמשיך לערוך"
+cancel,CANCEL,ביטול
+submit,SUBMIT,הגש
+pit,Pit Report,דוח פיט
+driving_type,Driving Type:,סוג הנעה -
+swerve,Swerve,סוורב
+tank,Tank,טנק
+other,Other…,...אחר
+aiming_upper,Is the robot aiming to the upper hub?,הרובוט מכוון להאב העליון
+aiming_lower,Is the robot aiming to the lower hub?,רובוט מכוון להאב התחתון
+adjust_angle,Can the robot adjust the shooting angle? ,הרובוט יכול לכוון את זווית הירייה שלו
+has_turret,Does the robot have a shooting turret?,לרובוט יש צריח ירייה
+bars_can_climb,Which bars can the robot climb?,?לאיזה בארים הרובוט יכול לטפס
+shooter_height,Shooter's Height:,גובה מנגנון הירי -
+low,Low,נמוך
+mid,Mid,בינוני
+high,High,גבוה
+weaknesses,Weaknesses:,:חולשות
+next_page,Next Page,עמוד הבא
+ok,OK,בסדר
+no_report_warning,"There is no report to edit, please create a new one.","אין דוח שניתן לערוך, צור דוח חדש"
+cancel_report,Cancel Report,בטל דוח
+cancel_report_text_1,Are you sure you want to cancel the report?,אתה בטוח שאתה רוצה
+cancel_report_text_1.5, ,?לבטל את הדוח
+cancel_report_text_2,This will delete all of the information entered (except for already submitted report that you're now editing).,פעולה זאת תמחק את כל המידע שהכנסת (למעט דוח שכבר נשלח ועכשיו נערך)
+last_page,Last Page,עמוד קודם
+yes,YES,כן
+no,NO,לא

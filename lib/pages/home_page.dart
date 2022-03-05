@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     reporterName = TextEdit(
-      title: "Enter your name...",
+      title: langEntries['name_prompt'][currentLang['i']],
       titleInLine: true,
       container: widget.reporterNameData,
       lines: 1,
@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
       color: Colors.grey.shade700,
     );
     reporterTeam = TextEdit(
-      title: "Enter your team number...",
+      title: langEntries['team_prompt'][currentLang['i']],
       titleInLine: true,
       container: widget.reporterTeamData,
       lines: 1,
@@ -39,14 +39,14 @@ class _HomePageState extends State<HomePage> {
     );
     super.initState();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     bool keyboardVisible = MediaQuery.of(context).viewInsets.bottom > 0;
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     final double screenSize = (screenHeight * screenWidth) / 1000;
-    
+
     return Scaffold(
       appBar: PageAppBar(
         title: "",
@@ -63,22 +63,22 @@ class _HomePageState extends State<HomePage> {
                 context: context,
                 builder: (context) => PopupDialog(
                   context,
-                  title: "Report Type",
-                  body: '''Choose the type of the report you want to submit.
-
-Pit Report - A pre-game report about the robot's structure.
-
-Game Report - A mid-game report about the robot's performance.''',
+                  title: langEntries['report_type'][currentLang['i']],
+                  body: langEntries['report_type_text_1'][currentLang['i']] +
+                      "\n\n" +
+                      langEntries['report_type_text_2'][currentLang['i']] +
+                      "\n\n" +
+                      langEntries['report_type_text_3'][currentLang['i']],
                   buttons: [
                     PopupDialogButton(
-                      text: "PIT",
+                      text: langEntries['report_type_pit'][currentLang['i']],
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() => reportType = ReportType.pit);
                       },
                     ),
                     PopupDialogButton(
-                      text: "GAME",
+                      text: langEntries['report_type_game'][currentLang['i']],
                       onPressed: () {
                         Navigator.of(context).pop();
                         setState(() => reportType = ReportType.game);
@@ -154,7 +154,8 @@ Game Report - A mid-game report about the robot's performance.''',
               child: Column(
                 children: [
                   Text(
-                    "Create a new\n ${reportType == ReportType.game ? "game" : "pit"} report",
+                    '''${langEntries['new_report_1'][currentLang['i']]}
+${reportType == ReportType.game ? langEntries['game_report'][currentLang['i']] : langEntries['pit_report'][currentLang['i']]} ${langEntries['new_report_2'][currentLang['i']]}''',
                     textAlign: TextAlign.center,
                     style: AppFont(
                             size: screenSize / 7.2, color: Colors.grey.shade700)
@@ -175,11 +176,11 @@ Game Report - A mid-game report about the robot's performance.''',
                           context: context,
                           builder: (context) => PopupDialog(
                             context,
-                            title: "Warning!",
-                            body: "You need to enter your name.",
+                            title: langEntries['warning'][currentLang['i']],
+                            body: langEntries['name_warning'][currentLang['i']],
                             buttons: [
                               PopupDialogButton(
-                                text: "OK",
+                                text: langEntries['ok'][currentLang['i']],
                                 onPressed: () => Navigator.of(context).pop(),
                               )
                             ],
@@ -190,11 +191,12 @@ Game Report - A mid-game report about the robot's performance.''',
                           context: context,
                           builder: (context) => PopupDialog(
                             context,
-                            title: "Warning!",
-                            body: "You need to enter your team number.",
+                            title: langEntries['warning'][currentLang['i']],
+                            body: langEntries['your_team_warning']
+                                [currentLang['i']],
                             buttons: [
                               PopupDialogButton(
-                                text: "OK",
+                                text: langEntries['ok'][currentLang['i']],
                                 onPressed: () => Navigator.of(context).pop(),
                               )
                             ],
@@ -206,11 +208,12 @@ Game Report - A mid-game report about the robot's performance.''',
                           context: context,
                           builder: (context) => PopupDialog(
                             context,
-                            title: "Warning!",
-                            body: "You can only enter numbers.",
+                            title: langEntries['warning'][currentLang['i']],
+                            body: langEntries['numbers_warning']
+                                [currentLang['i']],
                             buttons: [
                               PopupDialogButton(
-                                text: "OK",
+                                text: langEntries['ok'][currentLang['i']],
                                 onPressed: () => Navigator.of(context).pop(),
                               )
                             ],
@@ -262,12 +265,12 @@ Game Report - A mid-game report about the robot's performance.''',
                               context: context,
                               builder: (context) => PopupDialog(
                                 context,
-                                title: "Warning!",
-                                body:
-                                    "There is no report to edit, please create a new one.",
+                                title: langEntries['warning'][currentLang['i']],
+                                body: langEntries['no_report_warning']
+                                    [currentLang['i']],
                                 buttons: [
                                   PopupDialogButton(
-                                    text: "OK",
+                                    text: langEntries['ok'][currentLang['i']],
                                     onPressed: () =>
                                         Navigator.of(context).pop(),
                                   )
@@ -294,7 +297,7 @@ Game Report - A mid-game report about the robot's performance.''',
                           }
                         },
                         child: Text(
-                          "Update last report",
+                          langEntries['update_report'][currentLang['i']],
                           textAlign: TextAlign.center,
                           style: AppFont(
                                   size: screenSize / 13,

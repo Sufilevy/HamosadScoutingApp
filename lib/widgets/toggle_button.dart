@@ -51,7 +51,8 @@ class _ToggleButtonState extends State<ToggleButton> {
             child: TextButton(
               child: Text(widget.title,
                   maxLines: 2,
-                  textAlign: TextAlign.left,
+                  textDirection: currentLang['d'] as TextDirection,
+                  textAlign: TextAlign.center,
                   softWrap: true,
                   style: AppFont(size: 22.5).getFont()),
               onPressed: () => setState(

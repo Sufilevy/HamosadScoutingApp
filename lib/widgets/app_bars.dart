@@ -62,6 +62,7 @@ class PageAppBar extends StatelessWidget with PreferredSizeWidget {
               padding: const EdgeInsets.fromLTRB(40, 20, 20, 20),
               child: Text(
                 title,
+                textDirection: currentLang['d'] as TextDirection,
                 style: AppFont(
                   size: 23,
                 ).getFont(),

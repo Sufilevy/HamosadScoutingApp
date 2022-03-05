@@ -27,6 +27,7 @@ class _ToggleButtonsState extends State<ToggleButtons> {
       children: [
         Text(
           widget.title,
+          textDirection: currentLang['d'] as TextDirection,
           style: AppFont(size: 27).getFont(),
         ),
         Row(
@@ -64,6 +65,7 @@ class _ToggleButtonsState extends State<ToggleButtons> {
               padding: const EdgeInsets.fromLTRB(34, 0, 34, 0),
               child: Text(
                 widget.titles[index],
+                textDirection: currentLang['d'] as TextDirection,
                 style: AppFont(size: 20).getFont(),
               ),
             ),

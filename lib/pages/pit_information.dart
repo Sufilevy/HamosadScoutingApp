@@ -19,7 +19,7 @@ class _PitInformationState extends State<PitInformation>
   @override
   void initState() {
     teamNumber = TextEdit(
-      title: "Team Number:",
+      title: langEntries['team_number'][currentLang['i']],
       container: widget.currentTeamData,
       size: 30,
       lines: 1,
@@ -30,7 +30,9 @@ class _PitInformationState extends State<PitInformation>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PageAppBar(title: "General Information"),
+      appBar: PageAppBar(
+        title: langEntries['info'][currentLang['i']],
+      ),
       body: Stack(
         children: [
           Column(
@@ -42,12 +44,26 @@ class _PitInformationState extends State<PitInformation>
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.all(8),
-              child: Text(
-                "Report id: $reportId",
-                style: AppFont(size: 15, color: Colors.grey.shade700).getFont(),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(8, 8, 2, 8),
+                  child: Text(
+                    langEntries['report_id'][currentLang['i']],
+                    style: AppFont(size: 15, color: Colors.grey.shade700)
+                        .getFont(),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(2, 8, 8, 8),
+                  child: Text(
+                    reportId,
+                    style: AppFont(size: 15, color: Colors.grey.shade700)
+                        .getFont(),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
@@ -59,7 +75,7 @@ class _PitInformationState extends State<PitInformation>
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
               heroTag: "forward",
-              tooltip: "Next page",
+              tooltip: langEntries['next_page'][currentLang['i']],
               child: Icon(
                 Icons.arrow_forward_rounded,
                 color: Theme.of(context).canvasColor,
@@ -73,12 +89,11 @@ class _PitInformationState extends State<PitInformation>
                     context: context,
                     builder: (context) => PopupDialog(
                       context,
-                      title: "Warning!",
-                      body:
-                          "You need to enter a team number before continuing.",
+                      title: langEntries['warning'][currentLang['i']],
+                      body: langEntries['team_warning'][currentLang['i']],
                       buttons: [
                         PopupDialogButton(
-                          text: "OK",
+                          text: langEntries['ok'][currentLang['i']],
                           onPressed: () => Navigator.of(context).pop(),
                         )
                       ],
@@ -90,11 +105,11 @@ class _PitInformationState extends State<PitInformation>
                       context: context,
                       builder: (context) => PopupDialog(
                         context,
-                        title: "Warning!",
-                        body: "You can only enter numbers.",
+                        title: langEntries['warning'][currentLang['i']],
+                        body: langEntries['numbers_warning'][currentLang['i']],
                         buttons: [
                           PopupDialogButton(
-                            text: "OK",
+                            text: langEntries['ok'][currentLang['i']],
                             onPressed: () => Navigator.of(context).pop(),
                           )
                         ],

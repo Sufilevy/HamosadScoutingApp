@@ -14,7 +14,7 @@ class HistoryPage extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                "History",
+                langEntries['history'][currentLang['i']],
                 style: AppFont(
                   size: 23,
                 ).getFont(),
@@ -53,9 +53,9 @@ class HistoryPage extends StatelessWidget {
                 ),
               )
             : Padding(
-                padding: const EdgeInsets.all(40),
+                padding: const EdgeInsets.all(50),
                 child: Text(
-                  "There are no reports in the history, create a new report",
+                  langEntries['history_empty'][currentLang['i']],
                   textAlign: TextAlign.center,
                   style:
                       AppFont(color: Colors.grey.shade700, size: 25).getFont(),

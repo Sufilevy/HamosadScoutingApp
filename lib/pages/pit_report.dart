@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart' hide ToggleButtons;
 import 'package:hamosad_scouting_app/misc/data_container.dart';
+import 'package:hamosad_scouting_app/pages/pages.dart';
 import 'package:hamosad_scouting_app/widgets/widgets.dart';
 
 class PitReport extends StatefulWidget {
   PitReport({Key? key}) : super(key: key);
 
-  final DataContainer<String> drivingTypeData = DataContainer("");
+  final DataContainer<String> drivingTypeData = DataContainer(langEntries['tank'][currentLang['i']]);
   final DataContainer<bool> canShootUpperData = DataContainer(false);
   final DataContainer<bool> canShootLowerData = DataContainer(false);
   final DataContainer<bool> canAdjustShootAngleData = DataContainer(false);
@@ -14,7 +15,7 @@ class PitReport extends StatefulWidget {
   final DataContainer<bool> cantShootDynamicallyData = DataContainer(false);
   final DataContainer<String> anchorPointData = DataContainer("");
   final DataContainer<List<int>> whichBarCanClimbData = DataContainer([]);
-  final DataContainer<String> shootingHeightData = DataContainer("");
+  final DataContainer<String> shootingHeightData = DataContainer(langEntries['low'][currentLang['i']]);
   final DataContainer<String> weaknessesData = DataContainer("");
   final DataContainer<String> notesData = DataContainer("");
 
@@ -42,12 +43,17 @@ class _PitReportState extends State<PitReport>
   @override
   void initState() {
     drivingType = DropdownMenu(
-      title: "Driving Type:",
-      items: const ["Swerve", "Tank", "Other..."],
+      title: langEntries['driving_type'][currentLang['i']],
+      items: [
+        langEntries['swerve'][currentLang['i']],
+        langEntries['tank'][currentLang['i']],
+        langEntries['other'][currentLang['i']],
+      ],
+      value: widget.drivingTypeData.value,
       onChanged: (newValue) {
         setState(
           () {
-            if (newValue == "Other...") {
+            if (newValue == langEntries['other'][currentLang['i']]) {
               drivingIsOther = true;
             } else {
               drivingIsOther = false;
@@ -58,29 +64,29 @@ class _PitReportState extends State<PitReport>
       },
     );
     drivingOther = TextEdit(
-      title: "Other...",
+      title: langEntries['other'][currentLang['i']],
       container: widget.drivingTypeData,
       lines: 1,
       titleInLine: true,
     );
     canShootUpper = ToggleButton(
-      title: "Is the robot aiming to the upper hub?",
+      title: langEntries['aiming_upper'][currentLang['i']],
       container: widget.canShootUpperData,
     );
     canShootLower = ToggleButton(
-      title: "Is the robot aiming to the lower hub?",
+      title: langEntries['aiming_lower'][currentLang['i']],
       container: widget.canShootLowerData,
     );
     canAdjustShootingAngle = ToggleButton(
-      title: "Can the robot adjust the angle of shooting?",
+      title: langEntries['adjust_angle'][currentLang['i']],
       container: widget.canAdjustShootAngleData,
     );
     hasTurret = ToggleButton(
-      title: "Does the robot have a shooting turret?",
+      title: langEntries['has_turret'][currentLang['i']],
       container: widget.hasTurretData,
     );
     cantShootDynamically = ToggleButton(
-      title: "Does the robot need an anchor point to shoot?",
+      title: langEntries['cant_shoot_dynamically'][currentLang['i']],
       container: widget.cantShootDynamicallyData,
       onChanged: (newValue) {
         setState(
@@ -91,18 +97,18 @@ class _PitReportState extends State<PitReport>
       },
     );
     anchorPoint = TextEdit(
-      title: "Anchor point...",
+      title: langEntries['anchor_point'][currentLang['i']],
       container: widget.anchorPointData,
       lines: 1,
       titleInLine: true,
     );
     canShootWhileMoving = ToggleButton(
-      title: "Can the robot shoot while moving?",
+      title: langEntries['shoot_while_moving'][currentLang['i']],
       container: widget.canShootWhileMovingData,
     );
 
     whichBarsCanClimb = ToggleButtons(
-        title: "Which bars can the robot climb?",
+        title: langEntries['bars_can_climb'][currentLang['i']],
         titles: const [
           "1",
           "2",
@@ -111,19 +117,24 @@ class _PitReportState extends State<PitReport>
         ],
         container: widget.whichBarCanClimbData);
     shootingHeight = DropdownMenu(
-        title: "Shooter's Height:",
-        items: const ["Low", "Mid", "High"],
+        value: widget.shootingHeightData.value,
+        title: langEntries['shooter_height'][currentLang['i']],
+        items: [
+          langEntries['low'][currentLang['i']],
+          langEntries['mid'][currentLang['i']],
+          langEntries['high'][currentLang['i']],
+        ],
         onChanged: (newValue) {
           setState(() {
             widget.shootingHeightData.value = newValue;
           });
         });
     weaknesess = TextEdit(
-      title: "Weaknesses:",
+      title: langEntries['weaknesses'][currentLang['i']],
       container: widget.weaknessesData,
     );
     notes = TextEdit(
-      title: "Additional Notes:",
+      title: langEntries['additional_notes'][currentLang['i']],
       container: widget.notesData,
     );
     super.initState();
@@ -133,7 +144,7 @@ class _PitReportState extends State<PitReport>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PageAppBar(
-        title: "Pit Report",
+        title: langEntries['pit'][currentLang['i']],
       ),
       floatingActionButton: Stack(
         children: [
@@ -150,7 +161,7 @@ class _PitReportState extends State<PitReport>
           canAdjustShootingAngle,
           hasTurret,
           cantShootDynamically,
-          widget.cantShootDynamicallyData.value ? anchorPoint : Container(),
+          widget.cantShootDynamicallyData.value ? anchorPoint : null,
           canShootWhileMoving,
           whichBarsCanClimb,
           shootingHeight,

@@ -21,11 +21,11 @@ class _EndgamePageState extends State<EndgamePage>
   @override
   void initState() {
     barClimbed = OptionsSlider(
-        title: "Robot has climbed to bar:",
+        title: langEntries['climbed_to_bar']![currentLang['i']],
         container: widget.barClimbedData,
         max: 4);
     notes = TextEdit(
-      title: "Additional Notes:",
+      title: langEntries['additional_notes']![currentLang['i']],
       container: widget.notesData,
     );
     super.initState();
@@ -35,7 +35,7 @@ class _EndgamePageState extends State<EndgamePage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PageAppBar(
-        title: "Endgame",
+        title: langEntries['endgame']![currentLang['i']],
       ),
       floatingActionButton: Stack(
         children: [

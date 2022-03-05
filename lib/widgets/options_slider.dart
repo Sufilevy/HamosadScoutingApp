@@ -56,25 +56,36 @@ class _OptionsSliderState extends State<OptionsSlider> {
           ),
         ),
         widget.rightTitle != null || widget.leftTitle != null
-            ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                if (widget.leftTitle != null)
-                  Align(
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  if (widget.leftTitle != null)
+                    Align(
                       alignment: Alignment.centerLeft,
-                      child: Text(widget.leftTitle!,
-                          style: AppFont(size: 20).getFont()))
-                else
-                  Container(),
-                const SizedBox(
-                  width: 125,
-                ),
-                if (widget.rightTitle != null)
-                  Align(
+                      child: Text(
+                        widget.leftTitle!,
+                        textDirection: currentLang['d'] as TextDirection,
+                        style: AppFont(size: 20).getFont(),
+                      ),
+                    )
+                  else
+                    Container(),
+                  const SizedBox(
+                    width: 125,
+                  ),
+                  if (widget.rightTitle != null)
+                    Align(
                       alignment: Alignment.centerRight,
-                      child: Text(widget.rightTitle!,
-                          style: AppFont(size: 20).getFont()))
-                else
-                  Container(),
-              ])
+                      child: Text(
+                        widget.rightTitle!,
+                        textDirection: currentLang['d'] as TextDirection,
+                        style: AppFont(size: 20).getFont(),
+                      ),
+                    )
+                  else
+                    Container(),
+                ],
+              )
             : Container(),
       ],
     );

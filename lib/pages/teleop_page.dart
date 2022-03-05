@@ -37,15 +37,15 @@ class _TeleopPageState extends State<TeleopPage>
   @override
   void initState() {
     canShootWhileMoving = ToggleButton(
-      title: "Can the robot shoot while moving?",
+      title: langEntries['shoot_while_moving'][currentLang['i']],
       container: widget.canShootWhileMovingData,
     );
     canPickMultiple = ToggleButton(
-      title: "Can the robot pick up more than one ball at once?",
+      title: langEntries['pick_up_multiple'][currentLang['i']],
       container: widget.canPickMultipleData,
     );
     cantShootDynamically = ToggleButton(
-      title: "Does the robot need an anchor point to shoot?",
+      title: langEntries['cant_shoot_dynamically'][currentLang['i']],
       container: widget.cantShootDynamicallyData,
       onChanged: (newValue) {
         setState(
@@ -56,33 +56,33 @@ class _TeleopPageState extends State<TeleopPage>
       },
     );
     anchorPoint = TextEdit(
-      title: "Anchor point...",
+      title: langEntries['anchor_point'][currentLang['i']],
       container: widget.anchorPointData,
       lines: 1,
       titleInLine: true,
     );
     ballsPickedFloorCounter = ScoreCounter(
-      title: "Balls picked from floor:",
+      title: langEntries['picked_floor'][currentLang['i']],
       container: widget.ballsPickedFloorData,
     );
     ballsPickedFeederCounter = ScoreCounter(
-      title: "Balls picked from feeder:",
+      title: langEntries['picked_feeder'][currentLang['i']],
       container: widget.ballsPickedFeederData,
     );
     ballsMissedCounter = ScoreCounter(
-      title: "Balls missed:",
+      title: langEntries['missed'][currentLang['i']],
       container: widget.ballsMissedData,
     );
     lowerScoreCounter = ScoreCounter(
-      title: "Balls entered the lower hub:",
+      title: langEntries['lower_hub'][currentLang['i']],
       container: widget.lowerScoreData,
     );
     upperScoreCounter = ScoreCounter(
-      title: "Balls entered the upper hub:",
+      title: langEntries['upper_hub'][currentLang['i']],
       container: widget.upperScoreData,
     );
     notes = TextEdit(
-      title: "Additional Notes:",
+      title: langEntries['additional_notes'][currentLang['i']],
       container: widget.notesData,
     );
     super.initState();
@@ -92,7 +92,7 @@ class _TeleopPageState extends State<TeleopPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PageAppBar(
-        title: "Teleop",
+        title: langEntries['teleop'][currentLang['i']],
       ),
       floatingActionButton: Stack(
         children: [
@@ -105,7 +105,7 @@ class _TeleopPageState extends State<TeleopPage>
           canShootWhileMoving,
           canPickMultiple,
           cantShootDynamically,
-          widget.cantShootDynamicallyData.value ? anchorPoint : Container(),
+          widget.cantShootDynamicallyData.value ? anchorPoint : null,
           ballsPickedFeederCounter,
           ballsPickedFloorCounter,
           ballsMissedCounter,

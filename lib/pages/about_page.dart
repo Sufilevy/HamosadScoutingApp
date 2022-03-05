@@ -14,7 +14,7 @@ class AboutPage extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                "About",
+                langEntries['about']![currentLang['i']],
                 style: AppFont(
                   size: 23,
                 ).getFont(),
@@ -51,7 +51,7 @@ class AboutPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "This app was made with",
+                    langEntries['app_made_with']![currentLang['i']],
                     textAlign: TextAlign.center,
                     style: AppFont(size: 22.5, color: Colors.grey.shade700)
                         .getFont(),
@@ -72,7 +72,7 @@ class AboutPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(
-                      "This app was made by",
+                      langEntries['app_made_by']![currentLang['i']],
                       textAlign: TextAlign.center,
                       style: AppFont(size: 22.5, color: Colors.grey.shade700)
                           .getFont(),
@@ -80,14 +80,15 @@ class AboutPage extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8),
-                    child: Text("Sufi Levy",
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.shadowsIntoLight(
-                          textStyle: const TextStyle(
-                              color: Color(0xFF165700),
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold),
-                        )),
+                    child:
+                        Text(langEntries['app_made_by_name']![currentLang['i']],
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.shadowsIntoLight(
+                              textStyle: const TextStyle(
+                                  color: Color(0xFF165700),
+                                  fontSize: 30,
+                                  fontWeight: FontWeight.bold),
+                            )),
                   ),
                 ],
               ),
@@ -101,7 +102,7 @@ class AboutPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.all(8),
                     child: Text(
-                      "This app was made for",
+                      langEntries['app_made_for']![currentLang['i']],
                       textAlign: TextAlign.center,
                       style: AppFont(size: 22.5, color: Colors.grey.shade700)
                           .getFont(),

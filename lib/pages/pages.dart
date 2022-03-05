@@ -14,6 +14,7 @@ export 'history_page.dart';
 export 'pit_report.dart';
 export 'pit_information.dart';
 export 'help_page.dart';
+export '../misc/lang.dart';
 
 Color accentColor = Colors.green.shade700;
 var pages = {};
@@ -34,11 +35,10 @@ class AppFont {
 
   dynamic getFont() {
     return GoogleFonts.abel(
-      textStyle: TextStyle(
-          color: color ?? accentColor,
-          fontSize: size,
-          fontStyle: font,
-          fontWeight: fontWeight),
+      color: color ?? accentColor,
+      fontSize: size,
+      fontStyle: font,
+      fontWeight: fontWeight,
     );
   }
 }
