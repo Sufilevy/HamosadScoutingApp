@@ -13,7 +13,6 @@ export 'summary_page.dart';
 export 'history_page.dart';
 export 'pit_report.dart';
 export 'pit_information.dart';
-export 'help_page.dart';
 export '../misc/lang.dart';
 
 Color accentColor = Colors.green.shade700;

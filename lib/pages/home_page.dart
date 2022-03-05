@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hamosad_scouting_app/main.dart';
 import 'package:hamosad_scouting_app/misc/data_container.dart';
 import 'package:hamosad_scouting_app/misc/database.dart';
 import 'package:hamosad_scouting_app/pages/pages.dart';
@@ -108,14 +109,34 @@ class _HomePageState extends State<HomePage> {
           ),
           GestureDetector(
             child: Icon(
-              Icons.help_center_rounded,
+              Icons.language_rounded,
               color: accentColor,
               size: 35,
             ),
             onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const HelpPage()),
+              showDialog(
+                context: context,
+                builder: (context) => PopupDialog(
+                  context,
+                  title: langEntries['choose_language'][currentLang['i']],
+                  body: '',
+                  buttons: [
+                    PopupDialogButton(
+                      text: "עברית",
+                      onPressed: () {
+                        currentLang = Lang.he;
+                        RestartWidget.restartApp(context);
+                      },
+                    ),
+                    PopupDialogButton(
+                      text: "English",
+                      onPressed: () {
+                        currentLang = Lang.en;
+                        RestartWidget.restartApp(context);
+                      },
+                    ),
+                  ],
+                ),
               );
               SystemSound.play(SystemSoundType.click);
             },

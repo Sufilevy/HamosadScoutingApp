@@ -65,12 +65,12 @@ class PopupDialog extends StatelessWidget {
         textAlign: TextAlign.center,
         style: AppFont(size: 27.5).getFont(),
       ),
-      content: Text(
+      content: _body.isNotEmpty ? Text(
         _body,
         textDirection: currentLang['d'] as TextDirection,
         textAlign: TextAlign.center,
         style: AppFont(size: 22.5).getFont(),
-      ),
+      ) : null,
       actions: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

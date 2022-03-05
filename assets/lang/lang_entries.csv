@@ -12,7 +12,7 @@ report_type_text_3,Game Report - A report about the robot's performance.,דוח משח
 report_type_game,GAME,משחק
 report_type_pit,PIT,פיט
 history,History,היסטוריה
-history_empty,There are no reports in the history,אין דוחות בהיסטוריה, צור דוח חדש
+history_empty,There are no reports in history,אין דוחות בהיסטוריה, צור דוח חדש
 about,About,אודות
 app_made_with,This app was made with,האפליקציה הזאת נוצרה עם
 app_made_by,This app was made by,האפליקציה הזאת נוצרה על-ידי
@@ -89,3 +89,4 @@ cancel_report_text_2,This will delete all of the information entered (except for
 last_page,Last Page,עמוד קודם
 yes,YES,כן
 no,NO,לא
+choose_language,Choose Language,בחר שפה
