@@ -43,7 +43,7 @@ dynamic getDatetime() {
     "month": now.month.toString(),
     "year": now.year.toString(),
     "time": now.hour.toString() + ":" + now.minute.toString(),
-    "timeValue": now.hour * 60 + now.minute,
+    "timeValue": now.hour * 60 * 60 + now.minute * 60 + now.second,
   };
 }
 
@@ -93,10 +93,8 @@ dynamic generateGameReportData(
         "notes": pages["autonomus"].notesData.value,
       },
       "stageTeleop": {
-        "canShootWhileMoving": pages["teleop"].canShootWhileMovingData.value,
         "cantShootDynamically": pages["teleop"].cantShootDynamicallyData.value,
         "anchorPoint": pages["teleop"].anchorPointData.value,
-        "canPickMultiple": pages["teleop"].canPickMultipleData.value,
         "pickedFloor": pages["teleop"].ballsPickedFloorData.value,
         "pickedFeeder": pages["teleop"].ballsPickedFeederData.value,
         "hubMissed": pages["teleop"].ballsMissedData.value,

@@ -108,8 +108,8 @@ class _StopwatchTimerState extends State<StopwatchTimer> {
                 child: Text(
                   stopwatch.isRunning ? 'Stop' : 'Start',
                   style: AppFont(
-                    color: Colors.white70,
-                    size: 20,
+                    color: Theme.of(context).canvasColor,
+                    size: 22.5,
                   ).getFont(),
                 ),
                 style: ButtonStyle(
@@ -132,8 +132,8 @@ class _StopwatchTimerState extends State<StopwatchTimer> {
                 child: Text(
                   'Reset',
                   style: AppFont(
-                    color: Colors.white70,
-                    size: 20,
+                    color: Theme.of(context).canvasColor,
+                    size: 22.5,
                   ).getFont(),
                 ),
                 style: ButtonStyle(
