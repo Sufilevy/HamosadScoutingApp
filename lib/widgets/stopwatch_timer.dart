@@ -106,7 +106,9 @@ class _StopwatchTimerState extends State<StopwatchTimer> {
                   },
                 ),
                 child: Text(
-                  stopwatch.isRunning ? 'Stop' : 'Start',
+                  stopwatch.isRunning
+                      ? langEntries['stop'][currentLang['i']]
+                      : langEntries['start'][currentLang['i']],
                   style: AppFont(
                     color: Theme.of(context).canvasColor,
                     size: 22.5,
@@ -130,7 +132,7 @@ class _StopwatchTimerState extends State<StopwatchTimer> {
                   },
                 ),
                 child: Text(
-                  'Reset',
+                  langEntries['reset'][currentLang['i']],
                   style: AppFont(
                     color: Theme.of(context).canvasColor,
                     size: 22.5,
