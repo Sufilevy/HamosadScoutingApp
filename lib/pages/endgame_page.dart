@@ -7,6 +7,7 @@ class EndgamePage extends StatefulWidget {
   EndgamePage({Key? key}) : super(key: key);
 
   final DataContainer<double> barClimbedData = DataContainer(0);
+  final DataContainer<int> secondsClimbedData = DataContainer(0);
   final DataContainer<String> notesData = DataContainer("");
 
   @override
@@ -17,6 +18,7 @@ class _EndgamePageState extends State<EndgamePage>
     with LastPageButton, NextPageButton {
   late final OptionsSlider barClimbed;
   late final TextEdit notes;
+  late final StopwatchTimer secondsClimbed;
 
   @override
   void initState() {
@@ -24,6 +26,10 @@ class _EndgamePageState extends State<EndgamePage>
         title: langEntries['climbed_to_bar']![currentLang['i']],
         container: widget.barClimbedData,
         max: 4);
+    secondsClimbed = StopwatchTimer(
+      title: langEntries['bars_time'][currentLang['i']],
+      secondsData: widget.secondsClimbedData,
+    );
     notes = TextEdit(
       title: langEntries['additional_notes']![currentLang['i']],
       container: widget.notesData,
@@ -44,7 +50,11 @@ class _EndgamePageState extends State<EndgamePage>
         ],
       ),
       body: WidgetList(
-        children: [barClimbed, notes],
+        children: [
+          barClimbed,
+          secondsClimbed,
+          notes,
+        ],
       ),
     );
   }

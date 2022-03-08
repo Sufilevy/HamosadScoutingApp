@@ -111,7 +111,8 @@ dynamic generateGameReportData(
       },
       "stageEndgame": {
         "barClimbed": pages["endgame"].barClimbedData.value.toInt(),
-        "notes": pages["endgame"].notesData.value
+        "secondsClimbed": pages["endgame"].secondsClimbedData.value,
+        "notes": pages["endgame"].notesData.value,
       },
     }
   };

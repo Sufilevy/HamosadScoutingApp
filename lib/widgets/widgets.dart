@@ -10,3 +10,4 @@ export 'widget_list.dart';
 export 'options_slider.dart';
 export 'dropdown_menu.dart';
 export 'toggle_buttons.dart';
+export 'stopwatch_timer.dart';
